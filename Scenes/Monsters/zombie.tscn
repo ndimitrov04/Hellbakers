@@ -425,6 +425,7 @@ size = Vector2(32, 32)
 radius = 32.0
 
 [node name="Zombie" type="CharacterBody2D"]
+y_sort_enabled = true
 position = Vector2(0, -8)
 motion_mode = 1
 script = ExtResource("1_2e7eb")

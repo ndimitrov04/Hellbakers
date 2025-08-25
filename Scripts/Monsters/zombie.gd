@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var arena = $".." # Connection to arena
+
 @onready var sprite = $AnimatedSprite2D
 @onready var walkbox = $Walkbox
 @onready var hitbox = $Hitbox
@@ -38,7 +40,7 @@ func _ready():
 	simple_movement.attack_radius.connect("area_entered", check_area_in_range)
 	hurtbox.connect("area_entered", _on_hurtbox_area_entered)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if combat_started and hp > 0:
 		face_enemy()
 		play_movement_animation()
@@ -77,6 +79,8 @@ func _on_animation_finished():
 	print(animation_name.substr(0,3)) # for debugging, remove later
 	if animation_name.substr(0,3) == "die":
 		print(name + " has died!") # for debugging, remove later
+		# Use to update monster counters
+		arena.update_monster_count()
 		queue_free()
 
 ## Detect if in range of enemy and attack.
@@ -140,7 +144,6 @@ func _on_hurtbox_area_entered(area):
 ## Finds new target on the arena from the enemy team
 # TBA - Target should be chosen based on distance from caster
 func find_target() -> void:
-	var arena = get_parent()
 	if type == Globals.ObjectType.FRIENDLY:
 		for object in arena.get_children():
 			if "type" not in object:

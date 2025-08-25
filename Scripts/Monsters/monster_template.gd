@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var arena = $".." # Connection to arena
+
 @onready var sprite = $AnimatedSprite2D
 @onready var walkbox = $Walkbox
 @onready var hitbox = $Hitbox
@@ -55,6 +57,8 @@ func die() -> void:
 			sprite.play("die_left")
 		Direction.RIGHT:
 			sprite.play("die_right")
+	# Use to update monster counters
+	arena.count_monsters()
 
 # This function can be optimized, 
 # no need to check if every animation is a death animation.

@@ -22,7 +22,7 @@ func _ready():
 	attack_radius_shape.shape.radius = get_parent().hurtbox_shape.shape.radius
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if get_parent().combat_started and moving and get_parent().hp > 0:
 		limit_speed()
 		if get_parent().current_target != null:
