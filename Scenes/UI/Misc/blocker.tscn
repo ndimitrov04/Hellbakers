@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cc8sukrekiwav"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Misc/mouse_stop.gd" id="1_iiotv"]
+
+[node name="Blocker" type="Control"]
+top_level = true
+z_index = 10
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_default_cursor_shape = 8
+script = ExtResource("1_iiotv")
