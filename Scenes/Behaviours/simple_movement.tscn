@@ -19,5 +19,5 @@ monitorable = false
 shape = SubResource("CircleShape2D_yd0dk")
 
 [node name="CheckRadius" type="Timer" parent="AttackRadius"]
-wait_time = 0.1
+wait_time = 2.0
 autostart = true

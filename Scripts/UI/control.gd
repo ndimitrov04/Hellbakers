@@ -38,12 +38,15 @@ func _input(event):
 			spawn_monster(click_position)
 	
 func _on_begin_combat_pressed() -> void:
+	var friendly_monsters = arena.get_monster_count()[0]
+	if friendly_monsters <= 0:
+		print("Can't start combat with 0 friendly monsters!")
+		return
+	
 	# Disable all controls
 	disable_all_controls()
 	# Enable monster AI
-	for object in arena.get_children():
-		if "combat_started" in object:
-			object.combat_started = true
+	arena.start_combat()
 
 ## Disable all child control nodes by intercepting mouse
 ## events via control in "mouse stop" mode.
