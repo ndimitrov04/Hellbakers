@@ -504,7 +504,7 @@ script = ExtResource("1_nba18")
 position = Vector2(1, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_wch44")
-animation = &"attack_up"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="Walkbox" type="CollisionShape2D" parent="."]

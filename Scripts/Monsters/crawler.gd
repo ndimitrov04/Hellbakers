@@ -39,12 +39,23 @@ func _ready():
 	sprite.connect("animation_finished", _on_animation_finished)
 	simple_movement.attack_radius.connect("area_entered", check_area_in_range)
 	hurtbox.connect("area_entered", _on_hurtbox_area_entered)
+	# Wait to be moved into correct position by spawner
+	await get_tree().create_timer(0.1).timeout
+	arena.occupy_area(global_position.x, global_position.y)
+	# Apply red tint if enemy
+	if type == Globals.ObjectType.ENEMY:
+		sprite.self_modulate = Color("ffb1a5")
 
 func _physics_process(_delta):
 	if combat_started and hp > 0:
 		face_enemy()
 		play_movement_animation()
 		move_and_slide()
+
+	if sprite.animation.substr(0,6) == "attack":
+		if sprite.frame == 2:
+			# Attack
+			hurtbox.monitoring = true
 
 ## Take damage and apply knockback effect
 # Knockback is a positional vector which is added to the monster's current velocity
@@ -59,16 +70,19 @@ func take_damage(damage_taken : int, knockback_taken : Vector2) -> void:
 
 ## Play death animation and remove object from arena
 func die() -> void:
-	print(name + " has died!")
-	match facing:
-		Direction.UP:
-			sprite.play("die_up")
-		Direction.DOWN:
-			sprite.play("die_down")
-		Direction.LEFT:
-			sprite.play("die_left")
-		Direction.RIGHT:
-			sprite.play("die_right")
+	# If not already dying.
+	var animation_name = sprite.animation
+	if animation_name.substr(0,3) != "die":
+		print(name + " has died!")
+		match facing:
+			Direction.UP:
+				sprite.play("die_up")
+			Direction.DOWN:
+				sprite.play("die_down")
+			Direction.LEFT:
+				sprite.play("die_left")
+			Direction.RIGHT:
+				sprite.play("die_right")
 
 # This function can be optimized, 
 # no need to check if every animation is a death animation.
@@ -82,11 +96,20 @@ func _on_animation_finished():
 		# Use to update monster counters
 		arena.update_monster_count()
 		queue_free()
+	if animation_name.substr(0,6) == "attack":
+		# Attack end
+		hurtbox.monitoring = false
+		# Start movement after a short duration to allow for
+		# knockback to occur.
+		await get_tree().create_timer(0.03).timeout
+		simple_movement.moving = true
 
 ## Detect if in range of enemy and attack.
 ## If in range of a given enemy which is not the
 ## target, make the new enemy the target.
 func check_area_in_range(area) -> void:
+	if hp < 0 or not combat_started:
+		return
 	#print("Body detected: " + body.name ) # Debug, remove later
 	if type == Globals.ObjectType.FRIENDLY:
 		if "type" not in area.get_parent():
@@ -109,41 +132,58 @@ func check_area_in_range(area) -> void:
 
 ## Stop movement -> Melee Attack
 ## Attack by turning on hurtbox for 0.1 seconds
-# To-do: Add attack animation logic
 func attack() -> void:
+	if hp < 0 or not combat_started:
+		return
+	attack_cooldown.start()
 	print(name + " attacking!")
 	# Stop movement
+	velocity = Vector2(0,0)
 	simple_movement.moving = false
 	velocity = Vector2(0,0)
-	await get_tree().create_timer(0.2).timeout
-	# Attack
-	hurtbox.monitoring = true
-	attack_cooldown.start()
-	await get_tree().create_timer(0.2).timeout
-	hurtbox.monitoring = false
-	# Start movement
-	simple_movement.moving = true
-	
+	velocity = Vector2(0,0)
+	play_attack_animation()
+
 ## Deal damage to enemy if hurtbox connects with a hitbox on a nearby enemy
-func _on_hurtbox_area_entered(area):
+func _on_hurtbox_area_entered(_area):
+	var possible_targets = []
+	
+	if hp < 0 or not combat_started:
+		return
 	if type == Globals.ObjectType.FRIENDLY:
-		if "type" not in area.get_parent():
-			return
-		if area.get_parent().type == Globals.ObjectType.ENEMY:
-			print(area.get_parent().name + " has been hit!")
-			area.get_parent().take_damage(atk, Vector2(0,0))
+		for object in arena.get_children():
+			if "type" not in object:
+				continue
+			if object.type == Globals.ObjectType.ENEMY:
+				possible_targets.append(object)
+			current_target = get_closest_target(possible_targets)
 		return
 	elif type == Globals.ObjectType.ENEMY:
-		if "type" not in area.get_parent():
-			return
-		if area.get_parent().type == Globals.ObjectType.FRIENDLY:
-			print(area.get_parent().name + " has been hit!")
-			area.get_parent().take_damage(atk, Vector2(0,0))
+		for object in arena.get_children():
+			if "type" not in object:
+				continue
+			if object.type == Globals.ObjectType.FRIENDLY:
+				possible_targets.append(object)
+			current_target = get_closest_target(possible_targets)
 		return
+
+func get_closest_target(possible_targets : Array):
+	if possible_targets.is_empty():
+		return null
+	var min_distance_target : float = 9999
+	var chosen_target
+	for target in possible_targets:
+		var current_distance = global_position.distance_to(target.global_position)
+		if current_distance < min_distance_target:
+			min_distance_target = current_distance
+			chosen_target = target
+	return chosen_target
 
 ## Finds new target on the arena from the enemy team
 # TBA - Target should be chosen based on distance from caster
 func find_target() -> void:
+	if hp < 0 or not combat_started:
+		return
 	if type == Globals.ObjectType.FRIENDLY:
 		for object in arena.get_children():
 			if "type" not in object:
@@ -160,6 +200,8 @@ func find_target() -> void:
 		return
 
 func face_enemy() -> void:
+	if hp < 0 or not combat_started:
+		return
 	if current_target != null:
 		var delta = current_target.global_position - global_position
 		
@@ -175,6 +217,10 @@ func face_enemy() -> void:
 				facing = Direction.UP
 
 func play_movement_animation() -> void:
+	if hp < 0 or not combat_started:
+		return
+	if sprite.animation == "idle":
+		sprite.stop()
 	if (abs(velocity.x) > 0 or abs(velocity.y) > 0) and not sprite.is_playing():
 		match facing:
 			Direction.UP:
@@ -185,3 +231,16 @@ func play_movement_animation() -> void:
 				sprite.play("walk_left")
 			Direction.RIGHT:
 				sprite.play("walk_right")
+
+func play_attack_animation() -> void:
+	if hp < 0 or not combat_started:
+		return
+	match facing:
+		Direction.UP:
+			sprite.play("attack_up")
+		Direction.DOWN:
+			sprite.play("attack_down")
+		Direction.LEFT:
+			sprite.play("attack_left")
+		Direction.RIGHT:
+			sprite.play("attack_right")
