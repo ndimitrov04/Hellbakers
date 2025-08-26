@@ -206,7 +206,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_down",
-"speed": 5.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -226,7 +226,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_left",
-"speed": 5.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -246,7 +246,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_right",
-"speed": 5.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -266,7 +266,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_up",
-"speed": 5.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -504,7 +504,7 @@ script = ExtResource("1_nba18")
 position = Vector2(1, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_wch44")
-animation = &"walk_down"
+animation = &"attack_up"
 autoplay = "idle"
 
 [node name="Walkbox" type="CollisionShape2D" parent="."]
@@ -535,6 +535,7 @@ shape = SubResource("CircleShape2D_bsjbs")
 debug_color = Color(0.994093, 0, 0.227557, 0.42)
 
 [node name="Pathfinding" parent="." instance=ExtResource("5_gbunu")]
+target_desired_distance = 55.0
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 1.8

@@ -121,6 +121,7 @@ func attack() -> void:
 	# Stop movement
 	velocity = Vector2(0,0)
 	pathfinding.moving = false
+	pathfinding.target_position = global_position
 	velocity = Vector2(0,0)
 	velocity = Vector2(0,0)
 	play_attack_animation()

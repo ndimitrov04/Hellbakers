@@ -15,10 +15,13 @@ func _ready():
 	retarget.start()
 	# Set desired target distance to enemy's attack range
 	await get_tree().create_timer(0.1).timeout
-	target_desired_distance = get_parent().hurtbox_shape.shape.radius
+	target_desired_distance = get_parent().hurtbox_shape.shape.radius + 10
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	if not moving:
+		target_position = get_parent().global_position
+	
 	if get_parent().combat_started and moving and get_parent().hp > 0:
 		limit_speed()
 		if get_parent().current_target != null:
