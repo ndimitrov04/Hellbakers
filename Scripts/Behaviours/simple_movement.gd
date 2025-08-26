@@ -34,7 +34,7 @@ func _on_retarget_timeout():
 
 func _on_check_radius_timeout():
 	attack_radius.monitoring = false
-	await get_tree().create_timer(0.05).timeout
+	await get_tree().create_timer(0.1).timeout
 	attack_radius.monitoring = true
 
 ## Control max speed of char; crude implementation

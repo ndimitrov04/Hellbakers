@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=4 uid="uid://c4q3b45d6kfj8"]
+[gd_scene load_steps=10 format=4 uid="uid://c4q3b45d6kfj8"]
 
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_fiidf"]
 [ext_resource type="Texture2D" uid="uid://bll5f2wibs7m5" path="res://Images/PlaceholderImages/Dungeon_WallsAndFloors.png" id="2_id7kx"]
 [ext_resource type="PackedScene" uid="uid://d0x48qhwf0c4k" path="res://Scenes/Monsters/zombie.tscn" id="2_porr3"]
-[ext_resource type="PackedScene" uid="uid://by4t0dl6gt321" path="res://Scenes/UI/gui.tscn" id="4_kfga7"]
+[ext_resource type="Script" path="res://Scripts/UI/control.gd" id="4_t7cqi"]
+[ext_resource type="Script" path="res://Scripts/UI/CardHand/hand.gd" id="5_lwwlc"]
+[ext_resource type="Texture2D" uid="uid://bln1lmqsq8j5p" path="res://Images/Sprites/Zombie/Zombie Card.png" id="6_4dxve"]
+[ext_resource type="Script" path="res://Scripts/Cards/card.gd" id="7_uo8w2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6libq"]
 texture = ExtResource("2_id7kx")
@@ -246,19 +249,136 @@ tile_map_data = PackedByteArray("AAAEAAMAAAADAAMAAAAEAAQAAAADAAQAAAAEAAUAAAAFAAI
 tile_set = SubResource("TileSet_0nr11")
 
 [node name="Zombie" parent="Arena" instance=ExtResource("2_porr3")]
-position = Vector2(152, 272)
+position = Vector2(320, 272)
 type = 1
 
-[node name="Zombie2" parent="Arena" instance=ExtResource("2_porr3")]
-position = Vector2(352, 224)
-type = 1
+[node name="GUI" type="CanvasLayer" parent="."]
 
-[node name="Zombie3" parent="Arena" instance=ExtResource("2_porr3")]
-position = Vector2(328, 430)
-type = 1
+[node name="Control" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+script = ExtResource("4_t7cqi")
 
-[node name="Zombie4" parent="Arena" instance=ExtResource("2_porr3")]
-position = Vector2(632, 222)
-type = 1
+[node name="ArenaArea" type="Control" parent="GUI/Control"]
+layout_mode = 1
+anchor_left = 0.075
+anchor_top = 0.3
+anchor_right = 0.075
+anchor_bottom = 0.3
+offset_top = -1.52588e-05
+offset_right = 736.0
+offset_bottom = 264.0
 
-[node name="GUI" parent="." instance=ExtResource("4_kfga7")]
+[node name="BeginCombat" type="Button" parent="GUI/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.062
+anchor_top = 0.022
+anchor_right = 0.062
+anchor_bottom = 0.022
+offset_left = 0.639999
+offset_top = 0.159999
+offset_right = 136.64
+offset_bottom = 32.16
+text = "Begin Combat"
+
+[node name="Hand" type="Panel" parent="GUI/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.031
+anchor_top = 0.778
+anchor_right = 0.7
+anchor_bottom = 0.978
+offset_left = 0.32
+offset_top = -8.16003
+offset_right = -6.10352e-05
+offset_bottom = 7.83997
+script = ExtResource("5_lwwlc")
+
+[node name="Card" type="TextureButton" parent="GUI/Control/Hand"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.019
+anchor_top = 0.95
+anchor_right = 0.019
+anchor_bottom = 0.95
+offset_left = -0.264002
+offset_top = -144.0
+offset_right = 95.736
+toggle_mode = true
+texture_normal = ExtResource("6_4dxve")
+texture_pressed = ExtResource("6_4dxve")
+stretch_mode = 4
+script = ExtResource("7_uo8w2")
+metadata/monster = ExtResource("2_porr3")
+
+[node name="Stats" type="Panel" parent="GUI/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.687
+anchor_top = 0.033
+anchor_right = 0.687
+anchor_bottom = 0.033
+offset_left = -255.36
+offset_top = 0.24
+offset_right = 0.639954
+offset_bottom = 120.24
+
+[node name="FriendlyCount" type="Label" parent="GUI/Control/Stats"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 165.0
+offset_bottom = 31.0
+text = "Friendly monsters: "
+
+[node name="EnemyCount" type="Label" parent="GUI/Control/Stats"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 40.0
+offset_right = 150.0
+offset_bottom = 63.0
+text = "Enemy monsters:"
+
+[node name="CombatResult" type="Label" parent="GUI/Control/Stats"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 72.0
+offset_right = 135.0
+offset_bottom = 95.0
+text = "Combat result: "
+
+[node name="MouseStop" type="Control" parent="GUI/Control"]
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+
+[node name="RestartLabel" type="Label" parent="GUI/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.244
+anchor_top = 0.033
+anchor_right = 0.244
+anchor_bottom = 0.033
+offset_left = -0.320007
+offset_top = 0.24
+offset_right = 179.68
+offset_bottom = 23.24
+text = "Press R to restart game"
+
+[node name="InstLabel" type="Label" parent="GUI/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.244
+anchor_top = 0.033
+anchor_right = 0.244
+anchor_bottom = 0.033
+offset_left = -112.32
+offset_top = 592.24
+offset_right = 435.68
+offset_bottom = 641.24
+text = "<---- Click to select card. After that click inside arena to spawn monster.
+       All monsters on the field are currently enemies."
