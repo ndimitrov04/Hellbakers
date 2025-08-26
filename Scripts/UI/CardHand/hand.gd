@@ -4,12 +4,12 @@ extends Panel
 
 @onready var card_scene = preload("res://Scenes/Cards/card.tscn")
 
+@onready var placeholder_texture
 
 ## Each card contains its respective monster [0] and texture [1]
 # This array must be updated to include all monsters and cards.
-var cards = [
-	[preload("res://Scenes/Monsters/zombie.tscn"), preload("res://Images/Sprites/Zombie/card.png")]
-]
+# This array must be assigned a value in the _ready() function.
+var cards : Array
 
 ## This button group keeps track of which card is selected
 ## and forces only 1 card to be selectable at a time
@@ -17,7 +17,14 @@ var card_button_group = ButtonGroup.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	placeholder_texture = PlaceholderTexture2D.new()
+	placeholder_texture.size = Vector2(96/2,144/2)
+	
+	cards = [
+		[preload("res://Scenes/Monsters/zombie.tscn"), preload("res://Images/Sprites/Zombie/card.png")],
+		[preload("res://Scenes/Monsters/crawler.tscn"), preload("res://Images/Sprites/Crawler/card.png")],
+		[preload("res://Scenes/Monsters/skeleton.tscn"), placeholder_texture]
+	]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do3hqevlvbm3s"
-path="res://.godot/imported/Crawler_Spritesheet-Walk.png-6b65eb835fb29f15749c1950d8c48b92.ctex"
+uid="uid://dyb3nty0keoia"
+path="res://.godot/imported/attack.png-ea1ce67e02fa6ba28154cb7a548c49e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Sprites/Crawler/Crawler_Spritesheet-Walk.png"
-dest_files=["res://.godot/imported/Crawler_Spritesheet-Walk.png-6b65eb835fb29f15749c1950d8c48b92.ctex"]
+source_file="res://Images/Sprites/Crawler/attack.png"
+dest_files=["res://.godot/imported/attack.png-ea1ce67e02fa6ba28154cb7a548c49e5.ctex"]
 
 [params]
 

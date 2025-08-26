@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var control = $"../GUI/Control"
+@onready var mouse_stop = $"../GUI/Control/MouseStop"
 
 ## Areas (Array : Vector2) occupied by monsters
 var occupied_areas = []
@@ -11,8 +12,12 @@ var blocked_areas = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	# Disable control blocker
+	mouse_stop.mouse_filter = Control.MouseFilter.MOUSE_FILTER_IGNORE
+	# Update which arena scene the control.arena refers to
+	control.arena = self
+	get_parent().arena = self
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
@@ -46,13 +51,13 @@ func update_monster_count() -> void:
 	var combat_result : String = "Combat result: "
 	if enemy_monsters == 0 and friendly_monsters == 0:
 		combat_result = "Combat result: Draw!"
-		end_combat()
+		end_combat(false)
 	elif enemy_monsters == 0:
 		combat_result = "Combat result: Player Wins!"
-		end_combat()
+		end_combat(true)
 	elif friendly_monsters == 0:
 		combat_result = "Combat result: Enemy Wins!"
-		end_combat()
+		end_combat(false)
 	# Display result in GUI
 	control.update_stats(friendly_monsters, enemy_monsters, combat_result)
 	
@@ -63,12 +68,18 @@ func start_combat() -> void:
 			object.combat_started = true
 
 ## Turn off all monsters' AI
-func end_combat() -> void:
+func end_combat(result_victory : bool) -> void:
 	for object in get_children():
 		if "combat_started" in object:
 			object.combat_started = false
 			object.velocity = Vector2(0,0)
 			object.sprite.animation = "idle"
+	await get_tree().create_timer(1).timeout
+	# Put a result screen or something here
+	if result_victory:
+		get_parent().load_next_arena()
+	else:
+		get_tree().reload_current_scene()
 
 func occupy_area(x : float, y : float) -> void:
 	occupied_areas.append(Vector2(x,y))
