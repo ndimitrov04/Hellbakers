@@ -8,7 +8,7 @@
 script = ExtResource("1_qcpvb")
 
 [node name="Retarget" type="Timer" parent="."]
-wait_time = 0.4
+wait_time = 1.2
 
 [node name="AttackRadius" type="Area2D" parent="."]
 collision_layer = 3
@@ -19,5 +19,5 @@ monitorable = false
 shape = SubResource("CircleShape2D_yd0dk")
 
 [node name="CheckRadius" type="Timer" parent="AttackRadius"]
-wait_time = 2.0
+wait_time = 0.7
 autostart = true

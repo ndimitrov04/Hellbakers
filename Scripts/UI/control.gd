@@ -13,8 +13,6 @@ extends Control
 ## on click if a card has been previously selected.
 @onready var arena_area = $ArenaArea 
 
-## Unclickable Areas
-
 var card_selected : bool = false	# Is a card selected?
 var selected_card 					# Contains selected card
 var can_click : bool = false		# True if mouse is in arena_area; False otherwise
@@ -32,10 +30,21 @@ func _process(_delta):
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		# Check if click is inside arena
 		if can_click and card_selected:
-			var click_position = get_global_mouse_position()
+			var click_position : Vector2 = get_global_mouse_position()
 			print("Click position: ", click_position) # Debug, remove
-			spawn_monster(click_position)
+			# Check if area is occupied
+			const CHECK_RADIUS : int = 30
+			var in_occupied_area : bool = false
+			for occupied_area in arena.occupied_areas:
+				if (click_position - occupied_area).length() <= CHECK_RADIUS:
+					in_occupied_area = true
+					return
+			if not in_occupied_area:
+				spawn_monster(click_position)
+			else:
+				print("Can't spawn monster inside occupied area!")
 	
 func _on_begin_combat_pressed() -> void:
 	var friendly_monsters = arena.get_monster_count()[0]
@@ -59,11 +68,9 @@ func spawn_monster(spawn_coords : Vector2) -> void:
 	var monster_instance = selected_card.monster.instantiate()
 	arena.add_child(monster_instance)
 	monster_instance.global_position = spawn_coords
-	# TO-DO - Fix this, doesn't work.
-	# Spawn click-blocker to prevent summoning monsters at the same position
-	#var blocker_instance = selected_card.click_blocker.instantiate()
-	#arena_area.add_child(blocker_instance)
-	#blocker_instance.global_position = spawn_coords
+	# Destroy card
+	selected_card.button_pressed = false
+	selected_card.queue_free()
 
 func _on_mouse_entered() -> void:
 	can_click = true

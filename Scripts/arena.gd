@@ -2,6 +2,13 @@ extends Node2D
 
 @onready var control = $"../GUI/Control"
 
+## Areas (Array : Vector2) occupied by monsters
+var occupied_areas = []
+
+## Areas (Array : Vector2) blocked by traps or impassable terrain
+# TBA - Implement this.
+var blocked_areas = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -62,3 +69,6 @@ func end_combat() -> void:
 			object.combat_started = false
 			object.velocity = Vector2(0,0)
 			object.sprite.animation = "idle"
+
+func occupy_area(x : float, y : float) -> void:
+	occupied_areas.append(Vector2(x,y))

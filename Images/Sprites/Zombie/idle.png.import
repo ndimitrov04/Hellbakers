@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsvoiu6wp60nf"
-path="res://.godot/imported/Zombie Attack SpriteSheet.png-3eb2183388f47d212250db4f9b169659.ctex"
+uid="uid://cne4sfueh2ygl"
+path="res://.godot/imported/idle.png-2986f41cf6d141c15b5803fef30003f5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Sprites/Zombie/Zombie Attack SpriteSheet.png"
-dest_files=["res://.godot/imported/Zombie Attack SpriteSheet.png-3eb2183388f47d212250db4f9b169659.ctex"]
+source_file="res://Images/Sprites/Zombie/idle.png"
+dest_files=["res://.godot/imported/idle.png-2986f41cf6d141c15b5803fef30003f5.ctex"]
 
 [params]
 
