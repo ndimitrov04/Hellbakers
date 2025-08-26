@@ -1,11 +1,11 @@
 [gd_scene load_steps=61 format=3 uid="uid://d0x48qhwf0c4k"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/zombie.gd" id="1_2e7eb"]
-[ext_resource type="Texture2D" uid="uid://dsvoiu6wp60nf" path="res://Images/Sprites/Zombie/Zombie Attack SpriteSheet.png" id="2_mlqrj"]
-[ext_resource type="Texture2D" uid="uid://bwxy8dk86t125" path="res://Images/Sprites/Zombie/Zombie_Spritesheet-Walk.png" id="3_1heyo"]
-[ext_resource type="Texture2D" uid="uid://lmc4fe4x1gv4" path="res://Images/Sprites/Monster Death Spritesheet.png" id="3_an47i"]
+[ext_resource type="Texture2D" uid="uid://dsvoiu6wp60nf" path="res://Images/Sprites/Zombie/attack.png" id="2_mlqrj"]
+[ext_resource type="Texture2D" uid="uid://bwxy8dk86t125" path="res://Images/Sprites/Zombie/walk.png" id="3_1heyo"]
+[ext_resource type="Texture2D" uid="uid://lmc4fe4x1gv4" path="res://Images/Sprites/death.png" id="3_an47i"]
 [ext_resource type="PackedScene" uid="uid://dl8tfarbkanla" path="res://Scenes/Behaviours/simple_movement.tscn" id="4_2rk35"]
-[ext_resource type="Texture2D" uid="uid://cne4sfueh2ygl" path="res://Images/Sprites/Zombie/Zombie Idle Sheet.png" id="4_uxypv"]
+[ext_resource type="Texture2D" uid="uid://cne4sfueh2ygl" path="res://Images/Sprites/Zombie/idle.png" id="4_uxypv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qm41o"]
 atlas = ExtResource("2_mlqrj")
@@ -534,7 +534,7 @@ script = ExtResource("1_2e7eb")
 position = Vector2(1, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_wch44")
-animation = &"idle"
+animation = &"die_down"
 autoplay = "idle"
 
 [node name="Walkbox" type="CollisionShape2D" parent="."]

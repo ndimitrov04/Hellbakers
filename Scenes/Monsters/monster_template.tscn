@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Monsters/monster_template.gd" id="1_3id74"]
 [ext_resource type="Texture2D" uid="uid://d06ka46yr71e1" path="res://Images/PlaceholderImages/Dungeon_HeroMan1.png" id="2_kg8u8"]
-[ext_resource type="Texture2D" uid="uid://bwxy8dk86t125" path="res://Images/Sprites/Zombie/Zombie_Spritesheet-Walk.png" id="3_xhhub"]
+[ext_resource type="Texture2D" uid="uid://bwxy8dk86t125" path="res://Images/Sprites/Zombie/walk.png" id="3_xhhub"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3g0b0"]
 atlas = ExtResource("2_kg8u8")

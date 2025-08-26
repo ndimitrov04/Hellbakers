@@ -39,6 +39,12 @@ func _ready():
 	sprite.connect("animation_finished", _on_animation_finished)
 	simple_movement.attack_radius.connect("area_entered", check_area_in_range)
 	hurtbox.connect("area_entered", _on_hurtbox_area_entered)
+	# Wait to be moved into correct position by spawner
+	await get_tree().create_timer(0.1).timeout
+	arena.occupy_area(global_position.x, global_position.y)
+	# Apply red tint if enemy
+	if type == Globals.ObjectType.ENEMY:
+		sprite.self_modulate = Color("ffb1a5")
 
 func _physics_process(_delta):
 	if combat_started and hp > 0:
@@ -159,9 +165,22 @@ func _on_hurtbox_area_entered(area):
 			area.get_parent().take_damage(atk, knockback_direction*knockback )
 		return
 
+func get_closest_target(possible_targets : Array):
+	if possible_targets.is_empty():
+		return null
+	var min_distance_target : float = 9999
+	var chosen_target
+	for target in possible_targets:
+		var current_distance = global_position.distance_to(target.global_position)
+		if current_distance < min_distance_target:
+			min_distance_target = current_distance
+			chosen_target = target
+	return chosen_target
+
 ## Finds new target on the arena from the enemy team
-# TBA - Target should be chosen based on distance from caster
 func find_target() -> void:
+	var possible_targets = []
+	
 	if hp < 0 or not combat_started:
 		return
 	if type == Globals.ObjectType.FRIENDLY:
@@ -169,14 +188,16 @@ func find_target() -> void:
 			if "type" not in object:
 				continue
 			if object.type == Globals.ObjectType.ENEMY:
-				current_target = object
+				possible_targets.append(object)
+			current_target = get_closest_target(possible_targets)
 		return
 	elif type == Globals.ObjectType.ENEMY:
 		for object in arena.get_children():
 			if "type" not in object:
 				continue
 			if object.type == Globals.ObjectType.FRIENDLY:
-				current_target = object
+				possible_targets.append(object)
+			current_target = get_closest_target(possible_targets)
 		return
 
 func face_enemy() -> void:
