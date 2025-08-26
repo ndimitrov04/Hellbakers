@@ -1,5 +1,8 @@
 extends Control
 
+# deprecated; do not use
+
+
 @onready var control = $/root/Main/GUI/Control
 
 var block_controls : bool = false

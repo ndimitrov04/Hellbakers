@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://o2nnk07ro2pm"]
+
+[ext_resource type="Script" path="res://Scripts/Behaviours/pathfinding.gd" id="1_dic3g"]
+
+[node name="Pathfinding" type="NavigationAgent2D"]
+path_desired_distance = 5.0
+target_desired_distance = 35.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 1, 1)
+script = ExtResource("1_dic3g")
+
+[node name="Retarget" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
