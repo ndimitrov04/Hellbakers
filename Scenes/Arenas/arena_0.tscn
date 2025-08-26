@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://d0x48qhwf0c4k" path="res://Scenes/Monsters/zombie.tscn" id="5_aywsc"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jn0km"]
+vertices = PackedVector2Array(836, 484, 92, 484, 92, 220, 836, 220)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(64, 192, 864, 192, 864, 512, 64, 512)])
 agent_radius = 28.0
 
