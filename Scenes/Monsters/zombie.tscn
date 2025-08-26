@@ -534,7 +534,7 @@ script = ExtResource("1_2e7eb")
 position = Vector2(1, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_wch44")
-animation = &"die_down"
+animation = &"walk_right"
 autoplay = "idle"
 
 [node name="Walkbox" type="CollisionShape2D" parent="."]
