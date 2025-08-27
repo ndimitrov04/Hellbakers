@@ -10,6 +10,7 @@ extends Control
 @onready var enemy_count = $Stats/EnemyCount
 @onready var combat_result = $Stats/CombatResult
 
+@onready var collision_detector = $CollisionDetector
 @onready var monster_overlay = $MonsterOverlay
 
 @onready var soul_dough_count_label = $SlotMachine/SoulDough/CountLabel
@@ -21,6 +22,7 @@ extends Control
 var card_selected : bool = false	# Is a card selected?
 var selected_card 					# Contains selected card
 var can_click : bool = false		# True if mouse is in arena_area; False otherwise
+var mouse_in_solid_object : bool = false
 
 var soul_dough : int = 0
 
@@ -29,6 +31,8 @@ func _ready():
 	begin_combat.connect("pressed", _on_begin_combat_pressed)
 	arena_area.connect("mouse_entered", _on_mouse_entered)
 	arena_area.connect("mouse_exited", _on_mouse_exited)
+	collision_detector.connect("body_entered", _on_mouse_collision_start)
+	collision_detector.connect("body_exited", _on_mouse_collision_end)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -36,11 +40,12 @@ func _process(_delta):
 		get_tree().reload_current_scene()
 	# Keep monster_overlay texture over mouse pos
 	monster_overlay.global_position = get_global_mouse_position() - Vector2(12,18)
+	collision_detector.global_position = get_global_mouse_position() - Vector2(12,18)
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		# Check if click is inside arena
-		if can_click and card_selected:
+		if can_click and card_selected and not mouse_in_solid_object:
 			var click_position : Vector2 = get_global_mouse_position()
 			print("Click position: ", click_position) # Debug, remove
 			# Check if area is occupied
@@ -93,6 +98,12 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	can_click = false
+
+func _on_mouse_collision_start(_body) -> void:
+	mouse_in_solid_object = true
+	
+func _on_mouse_collision_end(_body) -> void:
+	mouse_in_solid_object = false
 
 func update_stats(friendlies : int, enemies : int, result_message : String = "Combat result: ") -> void:
 	friendly_count.text = "Friendlies left: " + str(friendlies)
