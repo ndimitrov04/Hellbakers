@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://by4t0dl6gt321"]
+[gd_scene load_steps=57 format=3 uid="uid://by4t0dl6gt321"]
 
 [ext_resource type="Theme" uid="uid://dcnbdi2edescd" path="res://Themes/arena.tres" id="1_6nbc6"]
 [ext_resource type="Script" path="res://Scripts/UI/control.gd" id="1_8irx8"]
@@ -357,6 +357,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fd2bc"]
+radius = 24.0
+
 [node name="GUI" type="CanvasLayer"]
 
 [node name="Control" type="Control" parent="."]
@@ -530,6 +533,12 @@ text = "Click slot machine to pull a card.
 <---- Click to select card. After that click inside arena to spawn monster."
 autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
+
+[node name="CollisionDetector" type="Area2D" parent="Control"]
+editor_description = "This detector is tied to the location of the mouse and forbids spawning enemies on tiles with collision."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/CollisionDetector"]
+shape = SubResource("CircleShape2D_fd2bc")
 
 [node name="MonsterOverlay" type="TextureRect" parent="Control"]
 modulate = Color(1, 1, 1, 0.501961)

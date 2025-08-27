@@ -28,7 +28,7 @@ var knockback : int = 65
 var weight : float = 0.9
 var max_movement_speed : int = 40
 var movement_speed : int = max_movement_speed
-var lifesteal : float = 0.5
+var lifesteal : float = 0.3
 var facing : Direction = Direction.DOWN
 
 # Monster Flags
