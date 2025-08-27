@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var arena = $Arena
+@onready var animation_player = $Overlay/AnimationPlayer
 
 @onready var current_arena : int = -1
 

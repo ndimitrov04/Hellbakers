@@ -1,6 +1,7 @@
-[gd_scene load_steps=57 format=3 uid="uid://4rkcwlmubbxi"]
+[gd_scene load_steps=58 format=3 uid="uid://4rkcwlmubbxi"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/crawler.gd" id="1_jx7qr"]
+[ext_resource type="PackedScene" uid="uid://c8b13p68c0gsa" path="res://Scenes/UI/Misc/health_bar.tscn" id="2_jsenn"]
 [ext_resource type="Texture2D" uid="uid://do3hqevlvbm3s" path="res://Images/Sprites/Crawler/walk.png" id="2_kh8sb"]
 [ext_resource type="Texture2D" uid="uid://dyb3nty0keoia" path="res://Images/Sprites/Crawler/attack.png" id="2_yb2nr"]
 [ext_resource type="Texture2D" uid="uid://lmc4fe4x1gv4" path="res://Images/Sprites/death.png" id="3_n5ft2"]
@@ -504,11 +505,16 @@ collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_jx7qr")
 
+[node name="HealthBar" parent="." instance=ExtResource("2_jsenn")]
+offset_top = -16.0
+offset_bottom = -11.0
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_wch44")
-animation = &"attack_left"
+animation = &"idle"
+autoplay = "idle"
 
 [node name="Walkbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 22)

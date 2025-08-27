@@ -1,6 +1,7 @@
-[gd_scene load_steps=55 format=3 uid="uid://dvy0gyxb8llg6"]
+[gd_scene load_steps=56 format=3 uid="uid://dvy0gyxb8llg6"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/skeleton.gd" id="1_nba18"]
+[ext_resource type="PackedScene" uid="uid://c8b13p68c0gsa" path="res://Scenes/UI/Misc/health_bar.tscn" id="2_5g0yg"]
 [ext_resource type="Texture2D" uid="uid://dsvoiu6wp60nf" path="res://Images/Sprites/Zombie/attack.png" id="2_syxla"]
 [ext_resource type="Texture2D" uid="uid://lmc4fe4x1gv4" path="res://Images/Sprites/death.png" id="3_6mw6i"]
 [ext_resource type="Texture2D" uid="uid://d06ka46yr71e1" path="res://Images/PlaceholderImages/Dungeon_HeroMan1.png" id="4_ui0l2"]
@@ -499,6 +500,8 @@ y_sort_enabled = true
 position = Vector2(0, -8)
 motion_mode = 1
 script = ExtResource("1_nba18")
+
+[node name="HealthBar" parent="." instance=ExtResource("2_5g0yg")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, 0)

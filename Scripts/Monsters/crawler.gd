@@ -21,9 +21,10 @@ enum Direction {UP, DOWN, LEFT, RIGHT}
 var combat_started : bool = false
 
 # Monster Stats
+var max_hp : int = 60
 var hp : int = 60
 var atk : int = 35
-var knockback : int = 3000
+var knockback : int = 30
 var weight : float = 1
 var max_movement_speed : int = 100
 var movement_speed : int = max_movement_speed
@@ -47,6 +48,9 @@ func _ready():
 		sprite.self_modulate = Color("ffb1a5")
 
 func _physics_process(_delta):
+	if hp > max_hp:
+		hp = max_hp
+		
 	if combat_started and hp > 0:
 		face_enemy()
 		play_movement_animation()
@@ -145,26 +149,28 @@ func attack() -> void:
 	play_attack_animation()
 
 ## Deal damage to enemy if hurtbox connects with a hitbox on a nearby enemy
-func _on_hurtbox_area_entered(_area):
-	var possible_targets = []
-	
+func _on_hurtbox_area_entered(area):
 	if hp < 0 or not combat_started:
 		return
 	if type == Globals.ObjectType.FRIENDLY:
-		for object in arena.get_children():
-			if "type" not in object:
-				continue
-			if object.type == Globals.ObjectType.ENEMY:
-				possible_targets.append(object)
-			current_target = get_closest_target(possible_targets)
+		if "type" not in area.get_parent():
+			return
+		if area.get_parent().type == Globals.ObjectType.ENEMY:
+			print(area.get_parent().name + " has been hit!")
+			# Steal Life
+			hp += atk * lifesteal
+			var knockback_direction = global_position.direction_to(area.get_parent().global_position)
+			area.get_parent().take_damage(atk, knockback_direction*knockback)
 		return
 	elif type == Globals.ObjectType.ENEMY:
-		for object in arena.get_children():
-			if "type" not in object:
-				continue
-			if object.type == Globals.ObjectType.FRIENDLY:
-				possible_targets.append(object)
-			current_target = get_closest_target(possible_targets)
+		if "type" not in area.get_parent():
+			return
+		if area.get_parent().type == Globals.ObjectType.FRIENDLY:
+			print(area.get_parent().name + " has been hit!")
+			# Steal Life
+			hp += atk * lifesteal
+			var knockback_direction = global_position.direction_to(area.get_parent().global_position)
+			area.get_parent().take_damage(atk, knockback_direction*knockback )
 		return
 
 func get_closest_target(possible_targets : Array):

@@ -26,4 +26,5 @@ func _on_toggled(toggled_on : bool):
 	else:
 		self_modulate = Color(1,1,1,1)
 	control.card_selected = toggled_on
+	control.monster_overlay.texture = card_sprite
 	control.selected_card = self

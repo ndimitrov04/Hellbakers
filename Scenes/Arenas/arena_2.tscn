@@ -432,6 +432,7 @@ sources/1 = SubResource("TileSetAtlasSource_iweig")
 [node name="Arena" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_048nl")
+metadata/soul_dough = 200
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_jn0km")
