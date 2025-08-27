@@ -3,11 +3,16 @@ extends Control
 @onready var arena = $"../../Arena"
 @onready var begin_combat = $BeginCombat
 @onready var mouse_stop = $MouseStop
+@onready var hand = $Hand
 
 @onready var stats = $Stats
 @onready var friendly_count = $Stats/FriendlyCount
 @onready var enemy_count = $Stats/EnemyCount
 @onready var combat_result = $Stats/CombatResult
+
+@onready var monster_overlay = $MonsterOverlay
+
+@onready var soul_dough_count_label = $SlotMachine/SoulDough/CountLabel
 
 ## Clickable area in which monsters will be able to be spawned
 ## on click if a card has been previously selected.
@@ -16,6 +21,8 @@ extends Control
 var card_selected : bool = false	# Is a card selected?
 var selected_card 					# Contains selected card
 var can_click : bool = false		# True if mouse is in arena_area; False otherwise
+
+var soul_dough : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,6 +34,8 @@ func _ready():
 func _process(_delta):
 	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
+	# Keep monster_overlay texture over mouse pos
+	monster_overlay.global_position = get_global_mouse_position() - Vector2(12,18)
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -43,15 +52,19 @@ func _input(event):
 					return
 			if not in_occupied_area:
 				spawn_monster(click_position)
+				# Remove monster cursor overlay
+				monster_overlay.texture = null
 			else:
 				print("Can't spawn monster inside occupied area!")
-	
+
 func _on_begin_combat_pressed() -> void:
 	var friendly_monsters = arena.get_monster_count()[0]
 	if friendly_monsters <= 0:
 		print("Can't start combat with 0 friendly monsters!")
 		return
-	
+	if not hand.validate():
+		print("All cursed cards must be played!")
+		return
 	# Disable all controls
 	disable_all_controls()
 	# Enable monster AI
@@ -68,6 +81,9 @@ func spawn_monster(spawn_coords : Vector2) -> void:
 	var monster_instance = selected_card.monster.instantiate()
 	arena.add_child(monster_instance)
 	monster_instance.global_position = spawn_coords
+	# If card is cursed, transform into enemy.
+	if selected_card.cursed:
+		monster_instance.type = Globals.ObjectType.ENEMY
 	# Destroy card
 	selected_card.button_pressed = false
 	selected_card.queue_free()
@@ -82,3 +98,13 @@ func update_stats(friendlies : int, enemies : int, result_message : String = "Co
 	friendly_count.text = "Friendlies left: " + str(friendlies)
 	enemy_count.text = "Enemies left: " + str(enemies)
 	combat_result.text = result_message
+
+func add_soul_dough(amount : int) -> void:
+	soul_dough += amount
+	soul_dough_count_label.text = "Soul Dough: " + str(soul_dough)
+
+func remove_soul_dough(amount : int) -> void:
+	soul_dough -= amount
+	if soul_dough < 0:
+		soul_dough = 0
+	soul_dough_count_label.text = "Soul Dough: " + str(soul_dough)

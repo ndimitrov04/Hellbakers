@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8b13p68c0gsa"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Misc/health_bar.gd" id="1_vyiuw"]
+
+[sub_resource type="Gradient" id="Gradient_fbw0u"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_008q7"]
+gradient = SubResource("Gradient_fbw0u")
+width = 32
+height = 5
+
+[node name="HealthBar" type="TextureProgressBar"]
+offset_left = -16.0
+offset_top = -40.0
+offset_right = 16.0
+offset_bottom = -35.0
+value = 50.0
+texture_progress = SubResource("GradientTexture2D_008q7")
+script = ExtResource("1_vyiuw")

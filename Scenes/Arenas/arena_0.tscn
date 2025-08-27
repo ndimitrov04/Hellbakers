@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://bqhtooampajg5"]
+[gd_scene load_steps=10 format=4 uid="uid://bqhtooampajg5"]
 
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_cpshg"]
 [ext_resource type="Texture2D" uid="uid://bll5f2wibs7m5" path="res://Images/PlaceholderImages/Dungeon_WallsAndFloors.png" id="2_cikco"]
 [ext_resource type="Texture2D" uid="uid://crwv7cd50vouv" path="res://Images/Tilesets/hellbaker_dungeon_tilesheet.png" id="3_xkqqp"]
 [ext_resource type="PackedScene" uid="uid://d0x48qhwf0c4k" path="res://Scenes/Monsters/zombie.tscn" id="5_aywsc"]
+[ext_resource type="PackedScene" uid="uid://c6c0d8icxjrut" path="res://Scenes/Monsters/vampire.tscn" id="5_y62yv"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jn0km"]
 vertices = PackedVector2Array(836, 484, 92, 484, 92, 220, 836, 220)
@@ -431,6 +432,7 @@ sources/1 = SubResource("TileSetAtlasSource_iweig")
 [node name="Arena" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_cpshg")
+metadata/soul_dough = 240
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_jn0km")
@@ -448,10 +450,6 @@ type = 1
 position = Vector2(768, 432)
 type = 1
 
-[node name="Zombie3" parent="." instance=ExtResource("5_aywsc")]
-position = Vector2(160, 240)
-type = 1
-
-[node name="Zombie4" parent="." instance=ExtResource("5_aywsc")]
-position = Vector2(160, 432)
+[node name="Vampire" parent="." instance=ExtResource("5_y62yv")]
+position = Vector2(136, 336)
 type = 1

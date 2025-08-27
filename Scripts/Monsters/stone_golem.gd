@@ -21,11 +21,12 @@ enum Direction {UP, DOWN, LEFT, RIGHT}
 var combat_started : bool = false
 
 # Monster Stats
+var max_hp : int = 150
 var hp : int = 150
 var atk : int = 20
-var knockback : int = 95
-var weight : float = 0.9
-var max_movement_speed : int = 10
+var knockback : int = 130
+var weight : float = 1.5
+var max_movement_speed : int = 15
 var movement_speed : int = max_movement_speed
 var lifesteal : float = 0
 var facing : Direction = Direction.DOWN
@@ -47,6 +48,9 @@ func _ready():
 		sprite.self_modulate = Color("ffb1a5")
 
 func _physics_process(_delta):
+	if hp > max_hp:
+		hp = max_hp
+	
 	if combat_started and hp > 0:
 		face_enemy()
 		play_movement_animation()
@@ -135,6 +139,8 @@ func _on_hurtbox_area_entered(area):
 			return
 		if area.get_parent().type == Globals.ObjectType.ENEMY:
 			print(area.get_parent().name + " has been hit!")
+			# Steal Life
+			hp += atk * lifesteal
 			var knockback_direction = global_position.direction_to(area.get_parent().global_position)
 			area.get_parent().take_damage(atk, knockback_direction*knockback)
 		return
@@ -143,6 +149,8 @@ func _on_hurtbox_area_entered(area):
 			return
 		if area.get_parent().type == Globals.ObjectType.FRIENDLY:
 			print(area.get_parent().name + " has been hit!")
+			# Steal Life
+			hp += atk * lifesteal
 			var knockback_direction = global_position.direction_to(area.get_parent().global_position)
 			area.get_parent().take_damage(atk, knockback_direction*knockback )
 		return

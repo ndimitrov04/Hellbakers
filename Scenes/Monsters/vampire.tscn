@@ -1,7 +1,8 @@
-[gd_scene load_steps=55 format=3 uid="uid://c6c0d8icxjrut"]
+[gd_scene load_steps=56 format=3 uid="uid://c6c0d8icxjrut"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/vampire.gd" id="1_40won"]
 [ext_resource type="Texture2D" uid="uid://dsvoiu6wp60nf" path="res://Images/Sprites/Zombie/attack.png" id="2_4yxfw"]
+[ext_resource type="PackedScene" uid="uid://c8b13p68c0gsa" path="res://Scenes/UI/Misc/health_bar.tscn" id="2_hllnj"]
 [ext_resource type="Texture2D" uid="uid://lmc4fe4x1gv4" path="res://Images/Sprites/death.png" id="3_fjvkj"]
 [ext_resource type="Texture2D" uid="uid://d06ka46yr71e1" path="res://Images/PlaceholderImages/Dungeon_HeroMan1.png" id="4_qexkq"]
 [ext_resource type="PackedScene" uid="uid://o2nnk07ro2pm" path="res://Scenes/Behaviours/pathfinding.tscn" id="5_evi3w"]
@@ -499,6 +500,8 @@ y_sort_enabled = true
 position = Vector2(0, -8)
 motion_mode = 1
 script = ExtResource("1_40won")
+
+[node name="HealthBar" parent="." instance=ExtResource("2_hllnj")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, 0)

@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var control = $"../GUI/Control"
 @onready var mouse_stop = $"../GUI/Control/MouseStop"
+@onready var animation_player = $"../Overlay/AnimationPlayer"
 
 ## Areas (Array : Vector2) occupied by monsters
 var occupied_areas = []
@@ -17,6 +18,9 @@ func _ready():
 	# Update which arena scene the control.arena refers to
 	control.arena = self
 	get_parent().arena = self
+	# Give soul dough "buy in" for stage to player
+	await get_tree().create_timer(0.2).timeout
+	control.add_soul_dough(get_meta("soul_dough"))
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -52,12 +56,15 @@ func update_monster_count() -> void:
 	if enemy_monsters == 0 and friendly_monsters == 0:
 		combat_result = "Combat result: Draw!"
 		end_combat(false)
+		animation_player.play("transition")
 	elif enemy_monsters == 0:
 		combat_result = "Combat result: Player Wins!"
 		end_combat(true)
+		animation_player.play("transition")
 	elif friendly_monsters == 0:
 		combat_result = "Combat result: Enemy Wins!"
 		end_combat(false)
+		animation_player.play("transition")
 	# Display result in GUI
 	control.update_stats(friendly_monsters, enemy_monsters, combat_result)
 	
@@ -74,7 +81,7 @@ func end_combat(result_victory : bool) -> void:
 			object.combat_started = false
 			object.velocity = Vector2(0,0)
 			object.sprite.animation = "idle"
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(0.5).timeout
 	# Put a result screen or something here
 	if result_victory:
 		get_parent().load_next_arena()
