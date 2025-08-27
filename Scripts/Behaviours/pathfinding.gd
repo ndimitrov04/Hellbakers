@@ -15,7 +15,10 @@ func _ready():
 	retarget.start()
 	# Set desired target distance to enemy's attack range
 	await get_tree().create_timer(0.1).timeout
-	target_desired_distance = get_parent().hurtbox_shape.shape.radius + 10
+	# If parent is a melee unit, get within melee range + 10;
+	# Otherwise set manual pathfinding range.
+	if "hurtbox_shape" in get_parent():
+		target_desired_distance = get_parent().hurtbox_shape.shape.radius + 10
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
