@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://c4q3b45d6kfj8"]
+[gd_scene load_steps=18 format=4 uid="uid://c4q3b45d6kfj8"]
 
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_icfsk"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_kh2ep"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dvy0gyxb8llg6" path="res://Scenes/Monsters/skeleton.tscn" id="4_qtj6g"]
 [ext_resource type="PackedScene" uid="uid://d0x48qhwf0c4k" path="res://Scenes/Monsters/zombie.tscn" id="5_8hmwb"]
 [ext_resource type="PackedScene" uid="uid://by4t0dl6gt321" path="res://Scenes/UI/gui.tscn" id="5_sovgp"]
+[ext_resource type="PackedScene" uid="uid://b03uwfm8ji2tr" path="res://Scenes/Monsters/goblin.tscn" id="8_q1eh7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jn0km"]
 vertices = PackedVector2Array(836, 484, 92, 484, 284, 444, 452, 412, 604, 412, 164, 444, 92, 220, 164, 324, 452, 220, 284, 324, 836, 220, 604, 260, 572, 220, 572, 260)
@@ -431,21 +432,6 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_6libq")
 sources/1 = SubResource("TileSetAtlasSource_iweig")
 
-[sub_resource type="Animation" id="Animation_fudcc"]
-resource_name = "transition"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Transition:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1368, -8), Vector2(-1768, -8)]
-}
-
 [sub_resource type="Animation" id="Animation_dua75"]
 length = 0.001
 tracks/0/type = "value"
@@ -459,6 +445,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1368, -8)]
+}
+
+[sub_resource type="Animation" id="Animation_fudcc"]
+resource_name = "transition"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1368, -8), Vector2(-1768, -8)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nuygi"]
@@ -517,3 +518,7 @@ offset_top = -8.0
 offset_right = 3128.0
 offset_bottom = 728.0
 texture = SubResource("GradientTexture1D_u0dgq")
+
+[node name="Goblin" parent="." instance=ExtResource("8_q1eh7")]
+position = Vector2(112, 456)
+type = 1

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://oerydhrrqkng"]
+
+[ext_resource type="Script" path="res://Scripts/Projectiles/rock.gd" id="1_dbnv8"]
+[ext_resource type="Texture2D" uid="uid://bufuxubrr748b" path="res://Images/Sprites/Goblin/projectile.png" id="2_p3fal"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yiu0m"]
+atlas = ExtResource("2_p3fal")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cs83x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yiu0m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t27j2"]
+size = Vector2(29.5, 31)
+
+[node name="Rock" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_dbnv8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -2)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_cs83x")
+autoplay = "default"
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(2, 4)
+shape = SubResource("RectangleShape2D_t27j2")
+debug_color = Color(0.992967, 0, 0.244505, 0.42)

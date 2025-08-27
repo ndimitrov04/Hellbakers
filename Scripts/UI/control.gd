@@ -90,7 +90,7 @@ func spawn_monster(spawn_coords : Vector2) -> void:
 
 func _on_mouse_entered() -> void:
 	can_click = true
-	
+
 func _on_mouse_exited() -> void:
 	can_click = false
 

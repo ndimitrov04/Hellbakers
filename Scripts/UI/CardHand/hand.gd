@@ -29,14 +29,18 @@ func _ready():
 		[preload("res://Scenes/Monsters/zombie.tscn"), preload("res://Images/Sprites/Zombie/card.png"), false],
 		[preload("res://Scenes/Monsters/crawler.tscn"), preload("res://Images/Sprites/Crawler/card.png"), false],
 		[preload("res://Scenes/Monsters/skeleton.tscn"), placeholder_texture, false],
-		[preload("res://Scenes/Monsters/stone_golem.tscn"), preload("res://Images/Sprites/StoneGolem/card.png"), false]
+		[preload("res://Scenes/Monsters/stone_golem.tscn"), preload("res://Images/Sprites/StoneGolem/card.png"), false],
+		[preload("res://Scenes/Monsters/goblin.tscn"), preload("res://Images/Sprites/Goblin/card.png"), false],
+		[preload("res://Scenes/Monsters/vampire.tscn"), placeholder_texture, false]
 	]
 
 	bad_cards = [
 		[preload("res://Scenes/Monsters/zombie.tscn"), preload("res://Images/Sprites/Zombie/card.png"), true],
 		[preload("res://Scenes/Monsters/crawler.tscn"), preload("res://Images/Sprites/Crawler/card.png"), true],
 		[preload("res://Scenes/Monsters/skeleton.tscn"), placeholder_texture, true],
-		[preload("res://Scenes/Monsters/stone_golem.tscn"), preload("res://Images/Sprites/StoneGolem/card.png"), true]
+		[preload("res://Scenes/Monsters/stone_golem.tscn"), preload("res://Images/Sprites/StoneGolem/card.png"), true],
+		[preload("res://Scenes/Monsters/goblin.tscn"), preload("res://Images/Sprites/Goblin/card.png"), true],
+		[preload("res://Scenes/Monsters/vampire.tscn"), placeholder_texture, true]
 	]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
