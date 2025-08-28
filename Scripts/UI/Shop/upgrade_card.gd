@@ -1,0 +1,83 @@
+extends TextureButton
+
+@onready var shop = $"../../../../../.."
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	connect("pressed", _on_pressed)
+	update_tooltip()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	pass
+
+func _on_pressed():
+	var upgrade_type : Upgrades.UpgradeType = get_meta("type")
+	match upgrade_type:
+		# +5 HP + 0 ATK on LvUP
+		Upgrades.UpgradeType.ZOMBIE:
+			print("click!")
+			if ShopData.biscuits >= Upgrades.zombie_upgrade[3] and Upgrades.zombie_upgrade[2] < 3:
+				Upgrades.zombie_upgrade[0] += 5
+				Upgrades.zombie_upgrade[1] += 0
+				Upgrades.zombie_upgrade[2] += 1
+				ShopData.biscuits -= Upgrades.zombie_upgrade[3]
+				Upgrades.zombie_upgrade[3] *= 2
+		# +3 HP + 3 ATK on LvUP
+		Upgrades.UpgradeType.SKELETON:
+			if ShopData.biscuits >= Upgrades.skeleton_upgrade[3] and Upgrades.skeleton_upgrade[2] < 3:
+				Upgrades.skeleton_upgrade[0] += 3
+				Upgrades.skeleton_upgrade[1] += 3
+				Upgrades.skeleton_upgrade[2] += 1
+				ShopData.biscuits -= Upgrades.skeleton_upgrade[3]
+				Upgrades.skeleton_upgrade[3] *= 2
+		# +0 HP + 3 ATK on LvUP
+		Upgrades.UpgradeType.GOBLIN:
+			if ShopData.biscuits >= Upgrades.goblin_upgrade[3] and Upgrades.goblin_upgrade[2] < 3:
+				Upgrades.goblin_upgrade[0] += 0
+				Upgrades.goblin_upgrade[1] += 3
+				Upgrades.goblin_upgrade[2] += 1
+				ShopData.biscuits -= Upgrades.goblin_upgrade[3]
+				Upgrades.goblin_upgrade[3] *= 2
+		# +15 HP + 0 ATK on LvUP
+		Upgrades.UpgradeType.STONE_GOLEM:
+			if ShopData.biscuits >= Upgrades.stone_golem_upgrade[3] and Upgrades.stone_golem_upgrade[2] < 3:
+				Upgrades.stone_golem_upgrade[0] += 15
+				Upgrades.stone_golem_upgrade[1] += 0
+				Upgrades.stone_golem_upgrade[2] += 1
+				ShopData.biscuits -= Upgrades.stone_golem_upgrade[3]
+				Upgrades.stone_golem_upgrade[3] *= 2
+		# +2 HP + 2 ATK on LvUP
+		Upgrades.UpgradeType.VAMPIRE:
+			if ShopData.biscuits >= Upgrades.vampire_upgrade[3] and Upgrades.vampire_upgrade[2] < 3:
+				Upgrades.vampire_upgrade[0] += 2
+				Upgrades.vampire_upgrade[1] += 2
+				Upgrades.vampire_upgrade[2] += 1
+				ShopData.biscuits -= Upgrades.vampire_upgrade[3]
+				Upgrades.vampire_upgrade[3] *= 2
+		# +5 HP + 2 ATK on LvUP
+		Upgrades.UpgradeType.CRAWLER:
+			if ShopData.biscuits >= Upgrades.crawler_upgrade[3] and Upgrades.crawler_upgrade[2] < 3:
+				Upgrades.crawler_upgrade[0] += 5
+				Upgrades.crawler_upgrade[1] += 2
+				Upgrades.crawler_upgrade[2] += 1
+				ShopData.biscuits -= Upgrades.crawler_upgrade[3]
+				Upgrades.crawler_upgrade[3] *= 2
+	shop.biscuits.text = "Biscuits: " + str(ShopData.biscuits)
+	update_tooltip()
+
+func update_tooltip():
+	var upgrade_type : Upgrades.UpgradeType = get_meta("type")
+	match upgrade_type:
+		Upgrades.UpgradeType.ZOMBIE:
+			tooltip_text = "Zombie\nLevel: " + str(Upgrades.zombie_upgrade[2]+1) + "\nUpgrade Cost: " + str(Upgrades.zombie_upgrade[3]) + " Biscuits\n+ 5 HP\n+ 0 ATK"
+		Upgrades.UpgradeType.SKELETON:
+			tooltip_text = "Skeleton\nLevel: " + str(Upgrades.skeleton_upgrade[2]+1) + "\nUpgrade Cost: " + str(Upgrades.skeleton_upgrade[3]) + " Biscuits\n+ 3 HP\n+ 3 ATK"
+		Upgrades.UpgradeType.GOBLIN:
+			tooltip_text = "Goblin\nLevel: " + str(Upgrades.goblin_upgrade[2]+1) + "\nUpgrade Cost: " + str(Upgrades.goblin_upgrade[3]) + " Biscuits\n+ 0 HP\n+ 3 ATK"
+		Upgrades.UpgradeType.STONE_GOLEM:
+			tooltip_text = "Stone Golem\nLevel: " + str(Upgrades.stone_golem_upgrade[2]+1) + "\nUpgrade Cost: " + str(Upgrades.stone_golem_upgrade[3]) + " Biscuits\n+ 15 HP\n+ 0 ATK"
+		Upgrades.UpgradeType.VAMPIRE:
+			tooltip_text = "Vampire\nLevel: " + str(Upgrades.vampire_upgrade[2]+1) + "\nUpgrade Cost: " + str(Upgrades.vampire_upgrade[3]) + " Biscuits\n+ 2 HP\n+ 2 ATK"
+		Upgrades.UpgradeType.CRAWLER:
+			tooltip_text = "Crawler\nLevel: " + str(Upgrades.crawler_upgrade[2]+1) + "\nUpgrade Cost: " + str(Upgrades.crawler_upgrade[3]) + " Biscuits\n+ 5 HP\n+ 2 ATK"

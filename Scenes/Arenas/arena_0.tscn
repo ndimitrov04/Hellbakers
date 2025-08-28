@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://b03uwfm8ji2tr" path="res://Scenes/Monsters/goblin.tscn" id="4_yjtmr"]
 [ext_resource type="PackedScene" uid="uid://c6c0d8icxjrut" path="res://Scenes/Monsters/vampire.tscn" id="5_kaors"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_jn0km"]
-vertices = PackedVector2Array(836, 484, 92, 484, 92, 220, 836, 220)
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_m1wxg"]
+vertices = PackedVector2Array(828, 468, 100, 468, 100, 228, 828, 228)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(64, 192, 864, 192, 864, 512, 64, 512)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(72, 200, 856, 200, 856, 496, 72, 496)])
 agent_radius = 28.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6libq"]
@@ -441,7 +441,7 @@ script = ExtResource("1_cpshg")
 metadata/soul_dough = 240
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_jn0km")
+navigation_polygon = SubResource("NavigationPolygon_m1wxg")
 
 [node name="BackgroundTiles" type="TileMapLayer" parent="NavigationRegion2D"]
 scale = Vector2(2, 2)

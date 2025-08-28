@@ -15,6 +15,12 @@ extends Control
 
 @onready var soul_dough_count_label = $SlotMachine/SoulDough/CountLabel
 
+@onready var overlay = $"../Overlay"
+@onready var hide_overlay = $"../Overlay/Play"
+
+@onready var error = $Error
+@onready var error_timer = $Error/Timer
+
 ## Clickable area in which monsters will be able to be spawned
 ## on click if a card has been previously selected.
 @onready var arena_area = $ArenaArea 
@@ -33,6 +39,8 @@ func _ready():
 	arena_area.connect("mouse_exited", _on_mouse_exited)
 	collision_detector.connect("body_entered", _on_mouse_collision_start)
 	collision_detector.connect("body_exited", _on_mouse_collision_end)
+	hide_overlay.connect("pressed", _hide_overlay)
+	error_timer.connect("timeout", _error_end)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -54,6 +62,7 @@ func _input(event):
 			for occupied_area in arena.occupied_areas:
 				if (click_position - occupied_area).length() <= CHECK_RADIUS:
 					in_occupied_area = true
+					output_error("Can't spawn monster inside occupied area!")
 					return
 			if not in_occupied_area:
 				spawn_monster(click_position)
@@ -61,14 +70,17 @@ func _input(event):
 				monster_overlay.texture = null
 			else:
 				print("Can't spawn monster inside occupied area!")
+				output_error("Can't spawn monster inside occupied area!")
 
 func _on_begin_combat_pressed() -> void:
 	var friendly_monsters = arena.get_monster_count()[0]
 	if friendly_monsters <= 0:
 		print("Can't start combat with 0 friendly monsters!")
+		output_error("Can't start combat with 0 friendly monsters!")
 		return
 	if not hand.validate():
 		print("All cursed cards must be played!")
+		output_error("All cursed cards must be played!")
 		return
 	# Disable all controls
 	disable_all_controls()
@@ -105,6 +117,9 @@ func _on_mouse_collision_start(_body) -> void:
 func _on_mouse_collision_end(_body) -> void:
 	mouse_in_solid_object = false
 
+func _hide_overlay():
+	overlay.hide()
+
 func update_stats(friendlies : int, enemies : int, result_message : String = "Combat result: ") -> void:
 	friendly_count.text = "Friendlies left: " + str(friendlies)
 	enemy_count.text = "Enemies left: " + str(enemies)
@@ -119,3 +134,10 @@ func remove_soul_dough(amount : int) -> void:
 	if soul_dough < 0:
 		soul_dough = 0
 	soul_dough_count_label.text = "Soul Dough: " + str(soul_dough)
+
+func output_error(errorString : String):
+	error.text = errorString
+	error_timer.start()
+	
+func _error_end():
+	error.text = ""

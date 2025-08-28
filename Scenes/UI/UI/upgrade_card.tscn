@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh3ya0cj1yryl"]
+
+[ext_resource type="Texture2D" uid="uid://bln1lmqsq8j5p" path="res://Images/Sprites/Zombie/card.png" id="1_5m5ec"]
+[ext_resource type="Script" path="res://Scripts/UI/Shop/upgrade_card.gd" id="2_qrrrs"]
+
+[node name="U1" type="TextureButton"]
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("1_5m5ec")
+script = ExtResource("2_qrrrs")
+metadata/type = 0

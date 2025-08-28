@@ -6,12 +6,12 @@ extends Panel
 
 @onready var placeholder_texture
 
-## Each card contains its respective monster [0], texture [1], curse [2]
+## Each card contains its respective monster [0], texture [1], curse [2], upgrade_tooltip[3]
 # This array must be updated to include all monsters and cards.
 # This array must be assigned a value in the _ready() function.
 var good_cards : Array
 
-## Each card contains its respective monster [0], texture [1], curse [2]
+## Each card contains its respective monster [0], texture [1], curse [2], upgrade_tooltip[3]
 # This array must be updated to include all monsters and cards.
 # This array must be assigned a value in the _ready() function.
 var bad_cards : Array
@@ -26,21 +26,21 @@ func _ready():
 	placeholder_texture.size = Vector2(96/2,144/2)
 	
 	good_cards = [
-		[preload("res://Scenes/Monsters/zombie.tscn"), preload("res://Images/Sprites/Zombie/card.png"), false],
-		[preload("res://Scenes/Monsters/crawler.tscn"), preload("res://Images/Sprites/Crawler/card.png"), false],
-		[preload("res://Scenes/Monsters/skeleton.tscn"), placeholder_texture, false],
-		[preload("res://Scenes/Monsters/stone_golem.tscn"), preload("res://Images/Sprites/StoneGolem/card.png"), false],
-		[preload("res://Scenes/Monsters/goblin.tscn"), preload("res://Images/Sprites/Goblin/card.png"), false],
-		[preload("res://Scenes/Monsters/vampire.tscn"), placeholder_texture, false]
+		[preload("res://Scenes/Monsters/zombie.tscn"), preload("res://Images/Sprites/Zombie/card.png"), false, Upgrades.UpgradeType.ZOMBIE],
+		[preload("res://Scenes/Monsters/crawler.tscn"), preload("res://Images/Sprites/Crawler/card.png"), false, Upgrades.UpgradeType.CRAWLER],
+		[preload("res://Scenes/Monsters/skeleton.tscn"), preload("res://Images/Sprites/Skeleton/card.png"), false, Upgrades.UpgradeType.SKELETON],
+		[preload("res://Scenes/Monsters/stone_golem.tscn"), preload("res://Images/Sprites/StoneGolem/card.png"), false, Upgrades.UpgradeType.STONE_GOLEM],
+		[preload("res://Scenes/Monsters/goblin.tscn"), preload("res://Images/Sprites/Goblin/card.png"), false, Upgrades.UpgradeType.GOBLIN],
+		[preload("res://Scenes/Monsters/vampire.tscn"), placeholder_texture, false, Upgrades.UpgradeType.VAMPIRE]
 	]
 
 	bad_cards = [
-		[preload("res://Scenes/Monsters/zombie.tscn"), preload("res://Images/Sprites/Zombie/card.png"), true],
-		[preload("res://Scenes/Monsters/crawler.tscn"), preload("res://Images/Sprites/Crawler/card.png"), true],
-		[preload("res://Scenes/Monsters/skeleton.tscn"), placeholder_texture, true],
-		[preload("res://Scenes/Monsters/stone_golem.tscn"), preload("res://Images/Sprites/StoneGolem/card.png"), true],
-		[preload("res://Scenes/Monsters/goblin.tscn"), preload("res://Images/Sprites/Goblin/card.png"), true],
-		[preload("res://Scenes/Monsters/vampire.tscn"), placeholder_texture, true]
+		[preload("res://Scenes/Monsters/zombie.tscn"), preload("res://Images/Sprites/Zombie/card.png"), true, Upgrades.UpgradeType.ZOMBIE],
+		[preload("res://Scenes/Monsters/crawler.tscn"), preload("res://Images/Sprites/Crawler/card.png"), true, Upgrades.UpgradeType.CRAWLER],
+		[preload("res://Scenes/Monsters/skeleton.tscn"), preload("res://Images/Sprites/Skeleton/card.png"), true, Upgrades.UpgradeType.SKELETON],
+		[preload("res://Scenes/Monsters/stone_golem.tscn"), preload("res://Images/Sprites/StoneGolem/card.png"), true, Upgrades.UpgradeType.STONE_GOLEM],
+		[preload("res://Scenes/Monsters/goblin.tscn"), preload("res://Images/Sprites/Goblin/card.png"), true, Upgrades.UpgradeType.GOBLIN],
+		[preload("res://Scenes/Monsters/vampire.tscn"), placeholder_texture, true, Upgrades.UpgradeType.VAMPIRE]
 	]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -62,11 +62,12 @@ func add_card(card):
 	card_instance.texture_pressed = card[1]
 	h_box_container.add_child(card_instance)
 	card_instance.cursed = card[2]
+	card_instance.tooltip_text = assign_tooltip(card[3])
 	if card_instance.cursed:
 		card_instance.modulate = Color(1,0.6,0.6)
 	
 func generate_random_card(soul_dough : int) -> Array:
-	var bad_card_chance : float = 50.0 / (75 + soul_dough)
+	var bad_card_chance : float = Upgrades.machine_upgrades / (75 + soul_dough)
 	var generate_bad_card : bool = randf() < bad_card_chance
 	
 	if generate_bad_card:
@@ -84,3 +85,19 @@ func validate() -> bool:
 		if card.cursed:
 			return false
 	return true
+
+func assign_tooltip(upgrade_type) -> String:
+	match upgrade_type:
+		Upgrades.UpgradeType.ZOMBIE:
+			return "Zombie LVL" + str(Upgrades.zombie_upgrade[2]+1) + "\n+ " + str(Upgrades.zombie_upgrade[0]) + " HP" + "\n+ " + str(Upgrades.zombie_upgrade[1]) + " ATK"
+		Upgrades.UpgradeType.SKELETON:
+			return "Skeleton LVL" + str(Upgrades.skeleton_upgrade[2]+1) + "\n+ " + str(Upgrades.skeleton_upgrade[0]) + " HP" + "\n+ " + str(Upgrades.skeleton_upgrade[1]) + " ATK"
+		Upgrades.UpgradeType.GOBLIN:
+			return "Goblin LVL" + str(Upgrades.goblin_upgrade[2]+1) + "\n+ " + str(Upgrades.goblin_upgrade[0]) + " HP" + "\n+ " + str(Upgrades.goblin_upgrade[1]) + " ATK"
+		Upgrades.UpgradeType.STONE_GOLEM:
+			return "Stone Golem LVL" + str(Upgrades.stone_golem_upgrade[2]+1) + "\n+ " + str(Upgrades.stone_golem_upgrade[0]) + " HP" + "\n+ " + str(Upgrades.stone_golem_upgrade[1]) + " ATK"
+		Upgrades.UpgradeType.VAMPIRE:
+			return "Vampire LVL" + str(Upgrades.vampire_upgrade[2]+1) + "\n+ " + str(Upgrades.vampire_upgrade[0]) + " HP" + "\n+ " + str(Upgrades.vampire_upgrade[1]) + " ATK"
+		Upgrades.UpgradeType.CRAWLER:
+			return "Crawler LVL" + str(Upgrades.crawler_upgrade[2]+1) + "\n+ " + str(Upgrades.crawler_upgrade[0]) + " HP" + "\n+ " + str(Upgrades.crawler_upgrade[1]) + " ATK"
+	return "Error"
