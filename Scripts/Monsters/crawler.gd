@@ -42,6 +42,12 @@ func _ready():
 	hurtbox.connect("area_entered", _on_hurtbox_area_entered)
 	# Wait to be moved into correct position by spawner
 	await get_tree().create_timer(0.1).timeout
+	# Apply upgrade if friednly
+	if type == Globals.ObjectType.FRIENDLY:
+		max_hp += get_node("/root/Upgrades").crawler_upgrade[0]
+		hp += get_node("/root/Upgrades").crawler_upgrade[0]
+		atk += get_node("/root/Upgrades").crawler_upgrade[1]
+	# Apply position
 	arena.occupy_area(global_position.x, global_position.y)
 	# Apply red tint if enemy
 	if type == Globals.ObjectType.ENEMY:

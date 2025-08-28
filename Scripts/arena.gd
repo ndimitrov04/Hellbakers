@@ -86,6 +86,8 @@ func end_combat(result_victory : bool) -> void:
 	if result_victory:
 		get_parent().load_next_arena()
 	else:
+		# Reward biscuits on death based on current arena
+		get_parent().reward_biscuits(get_parent().current_arena)
 		get_tree().reload_current_scene()
 
 func occupy_area(x : float, y : float) -> void:

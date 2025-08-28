@@ -530,6 +530,7 @@ y_sort_enabled = true
 position = Vector2(0, -8)
 motion_mode = 1
 script = ExtResource("1_o2a11")
+type = null
 
 [node name="HealthBar" parent="." instance=ExtResource("2_h53dl")]
 

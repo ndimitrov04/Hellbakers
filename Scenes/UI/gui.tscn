@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://by4t0dl6gt321"]
+[gd_scene load_steps=58 format=3 uid="uid://by4t0dl6gt321"]
 
 [ext_resource type="Theme" uid="uid://dcnbdi2edescd" path="res://Themes/arena.tres" id="1_6nbc6"]
 [ext_resource type="Script" path="res://Scripts/UI/control.gd" id="1_8irx8"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/UI/SlotMachine/slot_machine.gd" id="4_e0ogt"]
 [ext_resource type="Texture2D" uid="uid://d4b0hw4u6tjat" path="res://Images/Sprites/SlotMachine/pull.png" id="4_nc3y5"]
 [ext_resource type="Texture2D" uid="uid://lmc4fe4x1gv4" path="res://Images/Sprites/death.png" id="5_8hnna"]
+[ext_resource type="Texture2D" uid="uid://bln1lmqsq8j5p" path="res://Images/Sprites/Zombie/card.png" id="8_wn4u3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_an1gu"]
 atlas = ExtResource("3_df5jn")
@@ -380,7 +381,6 @@ anchor_bottom = 0.3
 offset_top = -1.52588e-05
 offset_right = 736.0
 offset_bottom = 264.0
-metadata/_edit_use_anchors_ = true
 
 [node name="BeginCombat" type="Button" parent="Control"]
 layout_mode = 1
@@ -394,7 +394,6 @@ offset_top = 0.159999
 offset_right = 136.64
 offset_bottom = 32.16
 text = "Begin Combat"
-metadata/_edit_use_anchors_ = true
 
 [node name="SlotMachine" type="AnimatedSprite2D" parent="Control"]
 position = Vector2(1080, 272)
@@ -447,7 +446,6 @@ offset_top = -8.16003
 offset_right = -6.10352e-05
 offset_bottom = 7.83997
 script = ExtResource("2_gp50u")
-metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/Hand"]
 layout_mode = 0
@@ -458,6 +456,7 @@ offset_bottom = 80.0
 scale = Vector2(2, 2)
 
 [node name="Stats" type="Panel" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.687
@@ -468,7 +467,6 @@ offset_left = -255.36
 offset_top = 0.24
 offset_right = 0.639954
 offset_bottom = 120.24
-metadata/_edit_use_anchors_ = true
 
 [node name="FriendlyCount" type="Label" parent="Control/Stats"]
 layout_mode = 0
@@ -477,7 +475,6 @@ offset_top = 8.0
 offset_right = 165.0
 offset_bottom = 31.0
 text = "Friendly monsters: "
-metadata/_edit_use_anchors_ = true
 
 [node name="EnemyCount" type="Label" parent="Control/Stats"]
 layout_mode = 0
@@ -486,7 +483,6 @@ offset_top = 40.0
 offset_right = 150.0
 offset_bottom = 63.0
 text = "Enemy monsters:"
-metadata/_edit_use_anchors_ = true
 
 [node name="CombatResult" type="Label" parent="Control/Stats"]
 layout_mode = 0
@@ -495,14 +491,12 @@ offset_top = 72.0
 offset_right = 135.0
 offset_bottom = 95.0
 text = "Combat result: "
-metadata/_edit_use_anchors_ = true
 
 [node name="MouseStop" type="Control" parent="Control"]
 anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="RestartLabel" type="Label" parent="Control"]
 layout_mode = 1
@@ -516,7 +510,6 @@ offset_top = 0.24
 offset_right = 179.68
 offset_bottom = 23.24
 text = "Press R to restart game"
-metadata/_edit_use_anchors_ = true
 
 [node name="InstLabel" type="Label" parent="Control"]
 layout_mode = 1
@@ -532,7 +525,6 @@ offset_bottom = 74.84
 text = "Click slot machine to pull a card.
 <---- Click to select card. After that click inside arena to spawn monster."
 autowrap_mode = 3
-metadata/_edit_use_anchors_ = true
 
 [node name="CollisionDetector" type="Area2D" parent="Control"]
 editor_description = "This detector is tied to the location of the mouse and forbids spawning enemies on tiles with collision."
@@ -556,3 +548,226 @@ offset_bottom = 18.0
 mouse_filter = 2
 mouse_default_cursor_shape = 2
 expand_mode = 1
+
+[node name="Error" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.45
+anchor_top = 0.656
+anchor_right = 0.45
+anchor_bottom = 0.656
+offset_top = -0.320007
+offset_right = 298.0
+offset_bottom = 56.68
+theme_override_colors/font_color = Color(0.857076, 0.054333, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+
+[node name="Timer" type="Timer" parent="Control/Error"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Overlay" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 0.605)
+
+[node name="BeginCombat" type="Button" parent="Overlay"]
+modulate = Color(2, 2, 2, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.062
+anchor_top = 0.022
+anchor_right = 0.062
+anchor_bottom = 0.022
+offset_left = 0.639999
+offset_top = 0.159999
+offset_right = 136.64
+offset_bottom = 32.16
+text = "Begin Combat"
+
+[node name="SlotMachine" type="AnimatedSprite2D" parent="Overlay"]
+position = Vector2(1080, 272)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_l6m4q")
+animation = &"pull"
+autoplay = "idle"
+frame = 14
+frame_progress = 1.0
+
+[node name="SoulDough" type="AnimatedSprite2D" parent="Overlay/SlotMachine"]
+position = Vector2(48, 140)
+sprite_frames = SubResource("SpriteFrames_on5ei")
+autoplay = "default"
+frame_progress = 0.0328492
+
+[node name="CountLabel" type="Label" parent="Overlay/SlotMachine/SoulDough"]
+anchors_preset = -1
+anchor_left = -2.625
+anchor_top = 0.5
+anchor_right = -2.625
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -16.0
+offset_right = 102.0
+offset_bottom = 7.0
+scale = Vector2(0.75, 0.75)
+text = "Soul Dough: 600"
+horizontal_alignment = 2
+
+[node name="Hand" type="Panel" parent="Overlay"]
+modulate = Color(1.2, 1.2, 1.2, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.031
+anchor_top = 0.778
+anchor_right = 0.7
+anchor_bottom = 0.978
+offset_left = 0.32
+offset_top = -8.16003
+offset_right = -6.10352e-05
+offset_bottom = 7.83997
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Overlay/Hand"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 428.0
+offset_bottom = 80.0
+scale = Vector2(2, 2)
+
+[node name="Card" type="Sprite2D" parent="Overlay/Hand"]
+position = Vector2(72, 80.0001)
+scale = Vector2(2, 2)
+texture = ExtResource("8_wn4u3")
+
+[node name="Card2" type="Sprite2D" parent="Overlay/Hand"]
+position = Vector2(184, 80.0001)
+scale = Vector2(2, 2)
+texture = ExtResource("8_wn4u3")
+
+[node name="Card3" type="Sprite2D" parent="Overlay/Hand"]
+position = Vector2(296, 80.0001)
+scale = Vector2(2, 2)
+texture = ExtResource("8_wn4u3")
+
+[node name="Hider" type="ColorRect" parent="Overlay"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.719
+anchor_top = 0.856
+anchor_right = 0.719
+anchor_bottom = 0.856
+offset_left = -0.320068
+offset_top = -0.320068
+offset_right = 351.68
+offset_bottom = 95.6799
+color = Color(0.0784314, 0.054902, 0.101961, 1)
+
+[node name="SlotMachineInst" type="Label" parent="Overlay"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.456
+anchor_top = 0.289
+anchor_right = 0.456
+anchor_bottom = 0.289
+offset_left = 0.319946
+offset_top = -0.0800018
+offset_right = 348.32
+offset_bottom = 204.92
+text = "1. Click on the slot machine to pull a card. -->
+
+The slot machine may give you a friendly monster (no highlight), or an enemy monster (red highlight). You can hold onto friendly monsters, but enemy monsters MUST be placed down before starting combat."
+autowrap_mode = 3
+
+[node name="CardInst" type="Label" parent="Overlay"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.506
+anchor_top = 0.8
+anchor_right = 0.506
+anchor_bottom = 0.8
+offset_left = -231.68
+offset_right = 0.319946
+offset_bottom = 119.0
+text = "3. Click on a card, after which click inside of the arena to summon that card's monster.
+<-------|"
+autowrap_mode = 3
+
+[node name="DoughInst" type="Label" parent="Overlay"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.681
+anchor_top = 0.778
+anchor_right = 0.681
+anchor_bottom = 0.778
+offset_left = 0.319946
+offset_top = -0.160034
+offset_right = 328.32
+offset_bottom = 166.84
+text = "------------->
+
+2. Pulling cards costs soul dough. The less soul dough you have, the higher the chance of pulling an enemy monster
+"
+autowrap_mode = 3
+
+[node name="BattleInst" type="Label" parent="Overlay"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025
+anchor_top = 0.022
+anchor_right = 0.025
+anchor_bottom = 0.022
+offset_top = 0.159999
+offset_right = 344.0
+offset_bottom = 167.16
+text = "------>
+
+4. Click on Begin Combat to start the fight. You have only one chance to win."
+autowrap_mode = 3
+
+[node name="BattleInst2" type="Label" parent="Overlay"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025
+anchor_top = 0.022
+anchor_right = 0.025
+anchor_bottom = 0.022
+offset_top = 392.16
+offset_right = 120.0
+offset_bottom = 424.16
+text = "Arena ----->"
+autowrap_mode = 3
+
+[node name="Play" type="Button" parent="Overlay"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.456
+anchor_top = 0.189
+anchor_right = 0.456
+anchor_bottom = 0.189
+offset_left = 0.319946
+offset_top = -0.0800018
+offset_right = 248.32
+offset_bottom = 39.92
+theme = ExtResource("1_6nbc6")
+text = "Got it, let me fight already!"
+
+[node name="spchbl" type="Label" parent="Overlay"]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 64.0
+offset_right = 936.0
+offset_bottom = 104.0
+text = "SPEECH BUBBLE HERE
+funny line here"
+autowrap_mode = 1
+
+[node name="ovplc" type="Label" parent="Overlay"]
+layout_mode = 0
+offset_left = 776.0
+offset_top = 24.0
+offset_right = 928.0
+offset_bottom = 125.0
+text = "OVENLORD PICTURE HERE OVENLORD PICTURE HERE OVENLORD PICTURE HE"
+autowrap_mode = 1
