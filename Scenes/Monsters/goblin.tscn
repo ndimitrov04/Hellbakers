@@ -583,6 +583,7 @@ debug_color = Color(0, 0.843137, 0.980392, 0.25098)
 
 [node name="Pathfinding" parent="." instance=ExtResource("6_de51d")]
 target_desired_distance = 350.0
+debug_enabled = false
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 1.8
