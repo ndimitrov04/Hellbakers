@@ -31,7 +31,10 @@ func _ready():
 		[preload("res://Scenes/Monsters/skeleton.tscn"), preload("res://Images/Sprites/Skeleton/card.png"), false, Upgrades.UpgradeType.SKELETON],
 		[preload("res://Scenes/Monsters/stone_golem.tscn"), preload("res://Images/Sprites/StoneGolem/card.png"), false, Upgrades.UpgradeType.STONE_GOLEM],
 		[preload("res://Scenes/Monsters/goblin.tscn"), preload("res://Images/Sprites/Goblin/card.png"), false, Upgrades.UpgradeType.GOBLIN],
-		[preload("res://Scenes/Monsters/vampire.tscn"), placeholder_texture, false, Upgrades.UpgradeType.VAMPIRE]
+		[preload("res://Scenes/Monsters/vampire.tscn"), preload("res://Images/Sprites/Vampire/card.png"), false, Upgrades.UpgradeType.VAMPIRE],
+		[preload("res://Scenes/Monsters/undead_archer.tscn"), preload("res://Images/Sprites/UndeadArcher/card.png"), false, Upgrades.UpgradeType.UNDEAD_ARCHER],
+		[preload("res://Scenes/Monsters/exploder.tscn"), placeholder_texture, false, Upgrades.UpgradeType.EXPLODER],
+		[preload("res://Scenes/Monsters/vampire_knight.tscn"), preload("res://Images/Sprites/VampireKnight/card.png"), false, Upgrades.UpgradeType.VAMPIRE_KNIGHT]
 	]
 
 	bad_cards = [
@@ -40,7 +43,10 @@ func _ready():
 		[preload("res://Scenes/Monsters/skeleton.tscn"), preload("res://Images/Sprites/Skeleton/card.png"), true, Upgrades.UpgradeType.SKELETON],
 		[preload("res://Scenes/Monsters/stone_golem.tscn"), preload("res://Images/Sprites/StoneGolem/card.png"), true, Upgrades.UpgradeType.STONE_GOLEM],
 		[preload("res://Scenes/Monsters/goblin.tscn"), preload("res://Images/Sprites/Goblin/card.png"), true, Upgrades.UpgradeType.GOBLIN],
-		[preload("res://Scenes/Monsters/vampire.tscn"), placeholder_texture, true, Upgrades.UpgradeType.VAMPIRE]
+		[preload("res://Scenes/Monsters/vampire.tscn"), preload("res://Images/Sprites/Vampire/card.png"), true, Upgrades.UpgradeType.VAMPIRE],
+		[preload("res://Scenes/Monsters/undead_archer.tscn"), preload("res://Images/Sprites/UndeadArcher/card.png"), true, Upgrades.UpgradeType.UNDEAD_ARCHER],
+		[preload("res://Scenes/Monsters/exploder.tscn"), placeholder_texture, true, Upgrades.UpgradeType.EXPLODER],
+		[preload("res://Scenes/Monsters/vampire_knight.tscn"), preload("res://Images/Sprites/VampireKnight/card.png"), true, Upgrades.UpgradeType.VAMPIRE_KNIGHT]
 	]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -100,4 +106,10 @@ func assign_tooltip(upgrade_type) -> String:
 			return "Vampire LVL" + str(Upgrades.vampire_upgrade[2]+1) + "\n+ " + str(Upgrades.vampire_upgrade[0]) + " HP" + "\n+ " + str(Upgrades.vampire_upgrade[1]) + " ATK"
 		Upgrades.UpgradeType.CRAWLER:
 			return "Crawler LVL" + str(Upgrades.crawler_upgrade[2]+1) + "\n+ " + str(Upgrades.crawler_upgrade[0]) + " HP" + "\n+ " + str(Upgrades.crawler_upgrade[1]) + " ATK"
+		Upgrades.UpgradeType.UNDEAD_ARCHER:
+			return "Undead Archer LVL" + str(Upgrades.undead_archer_upgrade[2]+1) + str(Upgrades.undead_archer_upgrade[0]) + " HP" + "\n+ " + str(Upgrades.undead_archer_upgrade[1]) + " ATK"
+		Upgrades.UpgradeType.EXPLODER:
+			return "Exploder LVL" + str(Upgrades.exploder_upgrade[2]+1) + str(Upgrades.exploder_upgrade[0]) + " HP" + "\n+ " + str(Upgrades.exploder_upgrade[1]) + " ATK"
+		Upgrades.UpgradeType.VAMPIRE_KNIGHT:
+			return "Vampire LVL" + str(Upgrades.vampire_knight_upgrade[2]+1) + str(Upgrades.vampire_knight_upgrade[0]) + " HP" + "\n+ " + str(Upgrades.vampire_knight_upgrade[1]) + " ATK"
 	return "Error"

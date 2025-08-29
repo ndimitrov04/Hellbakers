@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rayrjkg7jou3"
-path="res://.godot/imported/hellbaker_vampireknight_idlesheet.png-2024e589abd60104c8d9ef45c1d645df.ctex"
+uid="uid://cjj6cdf4ui6aq"
+path="res://.godot/imported/move.png-12688e41b6270da3b14514ac892a0ce2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Sprites/VampireKnight/hellbaker_vampireknight_idlesheet.png"
-dest_files=["res://.godot/imported/hellbaker_vampireknight_idlesheet.png-2024e589abd60104c8d9ef45c1d645df.ctex"]
+source_file="res://Images/Sprites/Vampire/move.png"
+dest_files=["res://.godot/imported/move.png-12688e41b6270da3b14514ac892a0ce2.ctex"]
 
 [params]
 

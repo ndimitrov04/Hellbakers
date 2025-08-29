@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://4rkcwlmubbxi" path="res://Scenes/Monsters/crawler.tscn" id="4_4xnxc"]
 [ext_resource type="PackedScene" uid="uid://d0x48qhwf0c4k" path="res://Scenes/Monsters/zombie.tscn" id="5_aywsc"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_jn0km"]
-vertices = PackedVector2Array(668, 444, 668, 220, 836, 220, 836, 484, 348, 484, 548, 444, 348, 260, 548, 220, 92, 220, 228, 260, 92, 484, 228, 484)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5), PackedInt32Array(5, 4, 6, 7), PackedInt32Array(8, 7, 6, 9), PackedInt32Array(10, 8, 9, 11)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_04jk3"]
+vertices = PackedVector2Array(668, 389.883, 668, 220, 836, 220, 836, 484, 651.156, 428.188, 228, 313.367, 228, 484, 92, 484, 92, 220, 246.328, 276.852, 290.531, 255.773, 548, 220, 327.367, 281.063, 348, 311.367, 548, 392.07, 348, 484, 569.102, 425.641, 605.938, 447.258)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(9, 5, 8), PackedInt32Array(10, 9, 8), PackedInt32Array(10, 8, 11), PackedInt32Array(12, 10, 11), PackedInt32Array(13, 12, 11, 14), PackedInt32Array(15, 13, 14, 16), PackedInt32Array(15, 16, 17), PackedInt32Array(3, 15, 17), PackedInt32Array(3, 17, 4)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(64, 192, 864, 192, 864, 512, 64, 512)])
 agent_radius = 28.0
 
@@ -246,11 +246,11 @@ texture = ExtResource("3_7lkit")
 3:0/0 = 0
 4:0/0 = 0
 5:0/0 = 0
-5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2.47487, -3.00521, 8, -8, 8, 8, -8, 8)
 6:0/0 = 0
 6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:0/0 = 0
-7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 1.59099, -1.41422, 8, 8, -8, 8)
 8:0/0 = 0
 8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 9:0/0 = 0
@@ -340,7 +340,7 @@ texture = ExtResource("3_7lkit")
 4:13/0 = 0
 4:14/0 = 0
 5:2/0 = 0
-5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -1.41422, 2.47487)
 5:3/0 = 0
 5:4/0 = 0
 5:5/0 = 0
@@ -368,7 +368,7 @@ texture = ExtResource("3_7lkit")
 6:13/0 = 0
 6:14/0 = 0
 7:2/0 = 0
-7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 3.0052, 3.35876, -8, 8)
 7:3/0 = 0
 7:4/0 = 0
 7:5/0 = 0
@@ -438,10 +438,10 @@ size = Vector2(28, 448)
 [node name="Arena" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_048nl")
-metadata/soul_dough = 250
+metadata/soul_dough = 240
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_jn0km")
+navigation_polygon = SubResource("NavigationPolygon_04jk3")
 
 [node name="BackgroundTiles" type="TileMapLayer" parent="NavigationRegion2D"]
 scale = Vector2(2, 2)

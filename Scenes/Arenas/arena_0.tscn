@@ -1,12 +1,11 @@
-[gd_scene load_steps=12 format=4 uid="uid://bqhtooampajg5"]
+[gd_scene load_steps=11 format=4 uid="uid://bqhtooampajg5"]
 
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_cpshg"]
 [ext_resource type="Texture2D" uid="uid://bll5f2wibs7m5" path="res://Images/PlaceholderImages/Dungeon_WallsAndFloors.png" id="2_cikco"]
 [ext_resource type="Texture2D" uid="uid://crwv7cd50vouv" path="res://Images/Tilesets/hellbaker_dungeon_tilesheet.png" id="3_xkqqp"]
-[ext_resource type="PackedScene" uid="uid://b03uwfm8ji2tr" path="res://Scenes/Monsters/goblin.tscn" id="4_yjtmr"]
-[ext_resource type="PackedScene" uid="uid://c6c0d8icxjrut" path="res://Scenes/Monsters/vampire.tscn" id="5_kaors"]
+[ext_resource type="PackedScene" uid="uid://d0x48qhwf0c4k" path="res://Scenes/Monsters/zombie.tscn" id="4_e6tnq"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_m1wxg"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_loj0m"]
 vertices = PackedVector2Array(828, 468, 100, 468, 100, 228, 828, 228)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(72, 200, 856, 200, 856, 496, 72, 496)])
@@ -246,11 +245,11 @@ texture = ExtResource("3_xkqqp")
 3:0/0 = 0
 4:0/0 = 0
 5:0/0 = 0
-5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-1.625, -1.5, 8, -8, 8, 8, -8, 8)
 6:0/0 = 0
 6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:0/0 = 0
-7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 1.875, -1.625, 8, 8, -8, 8)
 8:0/0 = 0
 8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 9:0/0 = 0
@@ -340,7 +339,7 @@ texture = ExtResource("3_xkqqp")
 4:13/0 = 0
 4:14/0 = 0
 5:2/0 = 0
-5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -2.5, 2.75)
 5:3/0 = 0
 5:4/0 = 0
 5:5/0 = 0
@@ -368,7 +367,7 @@ texture = ExtResource("3_xkqqp")
 6:13/0 = 0
 6:14/0 = 0
 7:2/0 = 0
-7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 0.875, 2.375, -8, 8)
 7:3/0 = 0
 7:4/0 = 0
 7:5/0 = 0
@@ -441,7 +440,7 @@ script = ExtResource("1_cpshg")
 metadata/soul_dough = 240
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_m1wxg")
+navigation_polygon = SubResource("NavigationPolygon_loj0m")
 
 [node name="BackgroundTiles" type="TileMapLayer" parent="NavigationRegion2D"]
 scale = Vector2(2, 2)
@@ -468,10 +467,14 @@ shape = SubResource("RectangleShape2D_0dcqv")
 position = Vector2(882, 304)
 shape = SubResource("RectangleShape2D_0dcqv")
 
-[node name="Goblin" parent="." instance=ExtResource("4_yjtmr")]
-position = Vector2(800, 264)
+[node name="Zombie" parent="." instance=ExtResource("4_e6tnq")]
+position = Vector2(752, 272)
 type = 1
 
-[node name="Vampire" parent="." instance=ExtResource("5_kaors")]
-position = Vector2(784, 384)
+[node name="Zombie2" parent="." instance=ExtResource("4_e6tnq")]
+position = Vector2(752, 400)
+type = 1
+
+[node name="Zombie3" parent="." instance=ExtResource("4_e6tnq")]
+position = Vector2(656, 328)
 type = 1

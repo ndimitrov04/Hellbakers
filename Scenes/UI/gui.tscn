@@ -1,7 +1,7 @@
 [gd_scene load_steps=58 format=3 uid="uid://by4t0dl6gt321"]
 
-[ext_resource type="Theme" uid="uid://dcnbdi2edescd" path="res://Themes/arena.tres" id="1_6nbc6"]
 [ext_resource type="Script" path="res://Scripts/UI/control.gd" id="1_8irx8"]
+[ext_resource type="Theme" uid="uid://bgtrc35poin82" path="res://Themes/base_theme.tres" id="1_sr5ax"]
 [ext_resource type="Script" path="res://Scripts/UI/CardHand/hand.gd" id="2_gp50u"]
 [ext_resource type="Texture2D" uid="uid://c66nwsejnsku8" path="res://Images/Sprites/SlotMachine/idle.png" id="3_df5jn"]
 [ext_resource type="Script" path="res://Scripts/UI/SlotMachine/slot_machine.gd" id="4_e0ogt"]
@@ -368,7 +368,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
-theme = ExtResource("1_6nbc6")
+theme = ExtResource("1_sr5ax")
 script = ExtResource("1_8irx8")
 metadata/_edit_use_anchors_ = true
 
@@ -383,6 +383,7 @@ offset_right = 736.0
 offset_bottom = 264.0
 
 [node name="BeginCombat" type="Button" parent="Control"]
+modulate = Color(2, 2, 2, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.062
@@ -391,8 +392,10 @@ anchor_right = 0.062
 anchor_bottom = 0.022
 offset_left = 0.639999
 offset_top = 0.159999
-offset_right = 136.64
-offset_bottom = 32.16
+offset_right = 184.64
+offset_bottom = 40.16
+theme = ExtResource("1_sr5ax")
+theme_override_font_sizes/font_size = 25
 text = "Begin Combat"
 
 [node name="SlotMachine" type="AnimatedSprite2D" parent="Control"]
@@ -426,11 +429,13 @@ anchor_left = -2.625
 anchor_top = 0.5
 anchor_right = -2.625
 anchor_bottom = 0.5
-offset_left = -28.0
-offset_top = -16.0
-offset_right = 102.0
-offset_bottom = 7.0
+offset_left = -24.0
+offset_top = -12.0
+offset_right = 99.0
+offset_bottom = 11.0
 scale = Vector2(0.75, 0.75)
+theme = ExtResource("1_sr5ax")
+theme_override_font_sizes/font_size = 16
 text = "Soul Dough: 600"
 horizontal_alignment = 2
 
@@ -509,22 +514,7 @@ offset_left = -0.320007
 offset_top = 0.24
 offset_right = 179.68
 offset_bottom = 23.24
-text = "Press R to restart game"
-
-[node name="InstLabel" type="Label" parent="Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.725
-anchor_top = 0.878
-anchor_right = 0.725
-anchor_bottom = 0.878
-offset_left = -6.10352e-05
-offset_top = -0.160034
-offset_right = 324.0
-offset_bottom = 74.84
-text = "Click slot machine to pull a card.
-<---- Click to select card. After that click inside arena to spawn monster."
-autowrap_mode = 3
+text = "Press R to give up"
 
 [node name="CollisionDetector" type="Area2D" parent="Control"]
 editor_description = "This detector is tied to the location of the mouse and forbids spawning enemies on tiles with collision."
@@ -570,6 +560,7 @@ one_shot = true
 [node name="Overlay" type="ColorRect" parent="."]
 offset_right = 1280.0
 offset_bottom = 720.0
+theme = ExtResource("1_sr5ax")
 color = Color(0, 0, 0, 0.605)
 
 [node name="BeginCombat" type="Button" parent="Overlay"]
@@ -582,8 +573,10 @@ anchor_right = 0.062
 anchor_bottom = 0.022
 offset_left = 0.639999
 offset_top = 0.159999
-offset_right = 136.64
-offset_bottom = 32.16
+offset_right = 184.64
+offset_bottom = 40.16
+theme = ExtResource("1_sr5ax")
+theme_override_font_sizes/font_size = 25
 text = "Begin Combat"
 
 [node name="SlotMachine" type="AnimatedSprite2D" parent="Overlay"]
@@ -607,11 +600,13 @@ anchor_left = -2.625
 anchor_top = 0.5
 anchor_right = -2.625
 anchor_bottom = 0.5
-offset_left = -28.0
-offset_top = -16.0
-offset_right = 102.0
-offset_bottom = 7.0
+offset_left = -24.0
+offset_top = -12.0
+offset_right = 99.0
+offset_bottom = 11.0
 scale = Vector2(0.75, 0.75)
+theme = ExtResource("1_sr5ax")
+theme_override_font_sizes/font_size = 16
 text = "Soul Dough: 600"
 horizontal_alignment = 2
 
@@ -687,9 +682,10 @@ anchor_left = 0.506
 anchor_top = 0.8
 anchor_right = 0.506
 anchor_bottom = 0.8
-offset_left = -231.68
-offset_right = 0.319946
-offset_bottom = 119.0
+offset_left = -239.68
+offset_top = -16.0
+offset_right = -7.68005
+offset_bottom = 137.0
 text = "3. Click on a card, after which click inside of the arena to summon that card's monster.
 <-------|"
 autowrap_mode = 3
@@ -705,8 +701,7 @@ offset_left = 0.319946
 offset_top = -0.160034
 offset_right = 328.32
 offset_bottom = 166.84
-text = "------------->
-
+text = "------>
 2. Pulling cards costs soul dough. The less soul dough you have, the higher the chance of pulling an enemy monster
 "
 autowrap_mode = 3
@@ -721,7 +716,7 @@ anchor_bottom = 0.022
 offset_top = 0.159999
 offset_right = 344.0
 offset_bottom = 167.16
-text = "------>
+text = "--->
 
 4. Click on Begin Combat to start the fight. You have only one chance to win."
 autowrap_mode = 3
@@ -750,15 +745,16 @@ offset_left = 0.319946
 offset_top = -0.0800018
 offset_right = 248.32
 offset_bottom = 39.92
-theme = ExtResource("1_6nbc6")
+theme = ExtResource("1_sr5ax")
+theme_override_font_sizes/font_size = 16
 text = "Got it, let me fight already!"
 
 [node name="spchbl" type="Label" parent="Overlay"]
 layout_mode = 0
-offset_left = 576.0
-offset_top = 64.0
-offset_right = 936.0
-offset_bottom = 104.0
+offset_left = 512.0
+offset_top = 72.0
+offset_right = 784.0
+offset_bottom = 121.0
 text = "SPEECH BUBBLE HERE
 funny line here"
 autowrap_mode = 1
@@ -768,6 +764,6 @@ layout_mode = 0
 offset_left = 776.0
 offset_top = 24.0
 offset_right = 928.0
-offset_bottom = 125.0
-text = "OVENLORD PICTURE HERE OVENLORD PICTURE HERE OVENLORD PICTURE HE"
+offset_bottom = 128.0
+text = "OVENLORD PICTURE HERE OVENLORD PICTURE "
 autowrap_mode = 1

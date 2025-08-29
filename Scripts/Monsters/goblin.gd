@@ -21,9 +21,9 @@ enum Direction {UP, DOWN, LEFT, RIGHT}
 var combat_started : bool = false
 
 # Monster Stats
-var max_hp : int = 70
+var max_hp : int = 50
 var hp : int = 50
-var atk : int = 15
+var atk : int = 20
 var knockback : int = 10
 var weight : float = 0.9
 var max_movement_speed : int = 40

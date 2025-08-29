@@ -24,9 +24,9 @@ var combat_started : bool = false
 var max_hp : int = 120
 var hp : int = 120
 var atk : int = 40
-var knockback : int = 65
-var weight : float = 0.9
-var max_movement_speed : int = 40
+var knockback : int = 95
+var weight : float = 1.1
+var max_movement_speed : int = 45
 var movement_speed : int = max_movement_speed
 var lifesteal : float = 0.0
 var facing : Direction = Direction.DOWN
@@ -44,9 +44,9 @@ func _ready():
 	await get_tree().create_timer(0.1).timeout
 	# Apply upgrade if friednly
 	if type == Globals.ObjectType.FRIENDLY:
-		max_hp += get_node("/root/Upgrades").vampire_upgrade[0]
-		hp += get_node("/root/Upgrades").vampire_upgrade[0]
-		atk += get_node("/root/Upgrades").vampire_upgrade[1]
+		max_hp += get_node("/root/Upgrades").vampire_knight_upgrade[0]
+		hp += get_node("/root/Upgrades").vampire_knight_upgrade[0]
+		atk += get_node("/root/Upgrades").vampire_knight_upgrade[1]
 	# Apply position
 	arena.occupy_area(global_position.x, global_position.y)
 	# Apply red tint if enemy

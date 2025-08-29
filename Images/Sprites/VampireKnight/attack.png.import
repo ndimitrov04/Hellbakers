@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di3jodbkxmdie"
-path="res://.godot/imported/VampireKnight_Card.png-cb0e8b60d6d7660a206979205b2f7b1d.ctex"
+uid="uid://ctqd1hwi7pkpb"
+path="res://.godot/imported/attack.png-0a92af5fb8c30c5f81108e1e56d6ebfe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Sprites/VampireKnight/VampireKnight_Card.png"
-dest_files=["res://.godot/imported/VampireKnight_Card.png-cb0e8b60d6d7660a206979205b2f7b1d.ctex"]
+source_file="res://Images/Sprites/VampireKnight/attack.png"
+dest_files=["res://.godot/imported/attack.png-0a92af5fb8c30c5f81108e1e56d6ebfe.ctex"]
 
 [params]
 
