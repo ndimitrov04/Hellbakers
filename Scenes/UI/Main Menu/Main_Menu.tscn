@@ -523,6 +523,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAQAFAAAAAAABAAAAAQAGAAAAAAABAAEAAQAHAAM
 tile_set = SubResource("TileSet_0nr11")
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 0
 offset_right = 1282.0
 offset_bottom = 718.0
 theme = ExtResource("1_wmicf")
@@ -546,6 +547,7 @@ theme_override_font_sizes/font_size = 95
 text = "Hellbakers"
 
 [node name="play_button" type="Button" parent="Panel"]
+layout_mode = 0
 offset_left = 88.0
 offset_top = 520.0
 offset_right = 318.0
@@ -553,6 +555,7 @@ offset_bottom = 604.0
 text = "COOK!"
 
 [node name="quit_button" type="Button" parent="Panel"]
+layout_mode = 0
 offset_left = 960.0
 offset_top = 496.0
 offset_right = 1190.0
@@ -560,6 +563,7 @@ offset_bottom = 554.0
 text = "Quit"
 
 [node name="credits_button" type="Button" parent="Panel"]
+layout_mode = 0
 offset_left = 960.0
 offset_top = 568.0
 offset_right = 1190.0
