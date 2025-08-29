@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7newokqdes4h"
-path="res://.godot/imported/hellbaker_vampireknight_movesheet.png-008eb00d2eadc1d1d4b27cd50546551b.ctex"
+path="res://.godot/imported/move.png-ba28cc563c3461d2910301a70f269ec3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Sprites/VampireKnight/hellbaker_vampireknight_movesheet.png"
-dest_files=["res://.godot/imported/hellbaker_vampireknight_movesheet.png-008eb00d2eadc1d1d4b27cd50546551b.ctex"]
+source_file="res://Images/Sprites/VampireKnight/move.png"
+dest_files=["res://.godot/imported/move.png-ba28cc563c3461d2910301a70f269ec3.ctex"]
 
 [params]
 

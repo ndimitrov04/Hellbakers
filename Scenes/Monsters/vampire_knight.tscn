@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://Scripts/Monsters/vampire_knight.gd" id="1_idigm"]
 [ext_resource type="PackedScene" uid="uid://c8b13p68c0gsa" path="res://Scenes/UI/Misc/health_bar.tscn" id="2_qop3r"]
-[ext_resource type="Texture2D" uid="uid://ctqd1hwi7pkpb" path="res://Images/Sprites/VampireKnight/hellbaker_vampireknight_attacksheet.png" id="3_2neuj"]
+[ext_resource type="Texture2D" uid="uid://ctqd1hwi7pkpb" path="res://Images/Sprites/VampireKnight/attack.png" id="3_2neuj"]
 [ext_resource type="Texture2D" uid="uid://lmc4fe4x1gv4" path="res://Images/Sprites/death.png" id="4_ctsnr"]
-[ext_resource type="Texture2D" uid="uid://rayrjkg7jou3" path="res://Images/Sprites/VampireKnight/hellbaker_vampireknight_idlesheet.png" id="5_46cdm"]
+[ext_resource type="Texture2D" uid="uid://rayrjkg7jou3" path="res://Images/Sprites/VampireKnight/idle.png" id="5_46cdm"]
 [ext_resource type="PackedScene" uid="uid://o2nnk07ro2pm" path="res://Scenes/Behaviours/pathfinding.tscn" id="6_pme5u"]
-[ext_resource type="Texture2D" uid="uid://b7newokqdes4h" path="res://Images/Sprites/VampireKnight/hellbaker_vampireknight_movesheet.png" id="6_sm27i"]
+[ext_resource type="Texture2D" uid="uid://b7newokqdes4h" path="res://Images/Sprites/VampireKnight/move.png" id="6_sm27i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8wabb"]
 atlas = ExtResource("3_2neuj")
@@ -209,7 +209,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_down",
-"speed": 9.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -226,7 +226,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_left",
-"speed": 9.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -243,7 +243,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_right",
-"speed": 9.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -260,7 +260,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_up",
-"speed": 9.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -509,9 +509,8 @@ script = ExtResource("1_idigm")
 position = Vector2(1, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_wch44")
-animation = &"idle"
+animation = &"attack_up"
 autoplay = "idle"
-frame_progress = 0.456206
 
 [node name="Walkbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 24)

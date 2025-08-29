@@ -1,15 +1,13 @@
-[gd_scene load_steps=13 format=4 uid="uid://i2em1xb4mdey"]
+[gd_scene load_steps=11 format=4 uid="uid://i2em1xb4mdey"]
 
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_l871v"]
 [ext_resource type="Texture2D" uid="uid://bll5f2wibs7m5" path="res://Images/PlaceholderImages/Dungeon_WallsAndFloors.png" id="2_ho3ls"]
 [ext_resource type="Texture2D" uid="uid://crwv7cd50vouv" path="res://Images/Tilesets/hellbaker_dungeon_tilesheet.png" id="3_rnav7"]
 [ext_resource type="PackedScene" uid="uid://dvy0gyxb8llg6" path="res://Scenes/Monsters/skeleton.tscn" id="4_ks644"]
-[ext_resource type="PackedScene" uid="uid://d0x48qhwf0c4k" path="res://Scenes/Monsters/zombie.tscn" id="5_ot722"]
-[ext_resource type="PackedScene" uid="uid://dpbusvgyvhrig" path="res://Scenes/Monsters/stone_golem.tscn" id="6_wn5tl"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_jn0km"]
-vertices = PackedVector2Array(836, 484, 92, 484, 284, 444, 452, 412, 604, 412, 164, 444, 92, 220, 164, 324, 452, 220, 284, 324, 836, 220, 604, 260, 572, 220, 572, 260)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 2, 1), PackedInt32Array(5, 1, 6, 7), PackedInt32Array(7, 6, 8, 9), PackedInt32Array(9, 8, 3, 2), PackedInt32Array(10, 0, 4, 11), PackedInt32Array(12, 10, 11, 13)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_t1rye"]
+vertices = PackedVector2Array(452, 361.203, 474.063, 391.141, 288.148, 387.727, 267.141, 339.398, 572, 269.203, 572, 220, 836, 220, 587.141, 275.398, 836, 484, 604, 314.18, 604, 361.297, 92, 220, 452, 220, 220.539, 320.328, 582.828, 389.656, 185.156, 344.859, 157.547, 384.453, 92, 484, 186.063, 423.141, 224.422, 450.852, 262.828, 421.656, 502.953, 412, 553.43, 412)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(7, 6, 8, 9), PackedInt32Array(10, 9, 8), PackedInt32Array(11, 12, 0, 3, 13), PackedInt32Array(14, 10, 8), PackedInt32Array(11, 13, 15), PackedInt32Array(11, 15, 16), PackedInt32Array(17, 11, 16), PackedInt32Array(17, 16, 18), PackedInt32Array(17, 18, 19), PackedInt32Array(8, 17, 19), PackedInt32Array(8, 19, 20), PackedInt32Array(8, 20, 2, 21), PackedInt32Array(22, 14, 8), PackedInt32Array(2, 1, 21), PackedInt32Array(8, 21, 22)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(64, 192, 864, 192, 864, 512, 64, 512)])
 agent_radius = 28.0
 
@@ -247,11 +245,11 @@ texture = ExtResource("3_rnav7")
 3:0/0 = 0
 4:0/0 = 0
 5:0/0 = 0
-5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-1.375, -1.5, 8, -8, 8, 8, -8, 8)
 6:0/0 = 0
 6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:0/0 = 0
-7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 3, -3.5, 8, 8, -8, 8)
 8:0/0 = 0
 8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 9:0/0 = 0
@@ -341,7 +339,7 @@ texture = ExtResource("3_rnav7")
 4:13/0 = 0
 4:14/0 = 0
 5:2/0 = 0
-5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -1, 1.5)
 5:3/0 = 0
 5:4/0 = 0
 5:5/0 = 0
@@ -369,7 +367,7 @@ texture = ExtResource("3_rnav7")
 6:13/0 = 0
 6:14/0 = 0
 7:2/0 = 0
-7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 1.375, 0.875, -8, 8)
 7:3/0 = 0
 7:4/0 = 0
 7:5/0 = 0
@@ -439,10 +437,10 @@ size = Vector2(28, 448)
 [node name="Arena" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_l871v")
-metadata/soul_dough = 300
+metadata/soul_dough = 210
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_jn0km")
+navigation_polygon = SubResource("NavigationPolygon_t1rye")
 
 [node name="BackgroundTiles" type="TileMapLayer" parent="NavigationRegion2D"]
 scale = Vector2(2, 2)
@@ -469,14 +467,14 @@ shape = SubResource("RectangleShape2D_6cl1d")
 position = Vector2(882, 304)
 shape = SubResource("RectangleShape2D_6cl1d")
 
+[node name="Skeleton" parent="." instance=ExtResource("4_ks644")]
+position = Vector2(728, 280)
+type = 1
+
 [node name="Skeleton2" parent="." instance=ExtResource("4_ks644")]
-position = Vector2(392, 432)
+position = Vector2(144, 256)
 type = 1
 
-[node name="Zombie" parent="." instance=ExtResource("5_ot722")]
-position = Vector2(520, 440)
-type = 1
-
-[node name="Stone Golem" parent="." instance=ExtResource("6_wn5tl")]
-position = Vector2(136, 256)
+[node name="Skeleton3" parent="." instance=ExtResource("4_ks644")]
+position = Vector2(392, 456)
 type = 1

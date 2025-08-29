@@ -45,25 +45,24 @@ func _on_body_entered(body):
 	if type == Globals.ObjectType.NEUTRAL:
 		return
 	if type == Globals.ObjectType.FRIENDLY_PROJECTILE:
-		if "type" not in body:
-			return
-		# Check for hitbox collision
-		if body.type == Globals.ObjectType.FRIENDLY:
-			return
-		# Check for walkbox collision
-		elif "type" in body.get_parent():
-			if body.get_parent().type == Globals.ObjectType.FRIENDLY:
+		if "type" in body:
+			# Check for hitbox collision
+			if body.type == Globals.ObjectType.FRIENDLY:
 				return
+			# Check for walkbox collision
+			elif "type" in body.get_parent():
+				if body.get_parent().type == Globals.ObjectType.FRIENDLY:
+					return
+		queue_free()
+		return
 	elif type == Globals.ObjectType.ENEMY_PROJECTILE:
-		if "type" not in body:
-			return
-		# Check for hitbox collision
-		if body.type == Globals.ObjectType.ENEMY:
-			return
-		# Check for walkbox collision
-		elif "type" in body.get_parent():
-			if body.get_parent().type == Globals.ObjectType.ENEMY:
+		if "type" in body:
+			# Check for hitbox collision
+			if body.type == Globals.ObjectType.ENEMY:
 				return
-	else:
+			# Check for walkbox collision
+			elif "type" in body.get_parent():
+				if body.get_parent().type == Globals.ObjectType.ENEMY:
+					return
 		queue_free()
 		return

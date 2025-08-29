@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckx0hu22fmqym"]
+
+[ext_resource type="Script" path="res://Scripts/Projectiles/explosion.gd" id="1_2qbit"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fdf5q"]
+radius = 100.0
+
+[node name="Explosion" type="Area2D"]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_2qbit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fdf5q")
+debug_color = Color(1, 0.603884, 0.175508, 0.42)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 120
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.95
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 202.02
+initial_velocity_max = 202.02
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+color = Color(0.993721, 0.451658, 1.92523e-07, 1)
+
+[node name="Timeout" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true

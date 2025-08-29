@@ -6,7 +6,10 @@ enum UpgradeType {
 	GOBLIN,
 	VAMPIRE,
 	STONE_GOLEM,
-	CRAWLER
+	CRAWLER,
+	UNDEAD_ARCHER,
+	EXPLODER,
+	VAMPIRE_KNIGHT
 }
 
 var machine_upgrades : float = 50
@@ -19,8 +22,11 @@ var machine_upgrades : float = 50
 # to the friendly monsters on spawn.
 
 var zombie_upgrade = [0,0,0,2]
-var skeleton_upgrade = [0,0,0,2]
+var skeleton_upgrade = [0,0,0,3]
 var goblin_upgrade = [0,0,0,2]
 var vampire_upgrade = [0,0,0,5]
 var stone_golem_upgrade = [0,0,0,5]
 var crawler_upgrade = [0,0,0,3]
+var undead_archer_upgrade = [0,0,0,10]
+var exploder_upgrade = [0,0,0,5]
+var vampire_knight_upgrade = [0,0,0,15]
