@@ -73,7 +73,7 @@ func add_card(card):
 		card_instance.modulate = Color(1,0.6,0.6)
 	
 func generate_random_card(soul_dough : int) -> Array:
-	var bad_card_chance : float = Upgrades.machine_upgrades / (75 + soul_dough)
+	var bad_card_chance : float = 50 / (Upgrades.machine_upgrades + soul_dough)
 	var generate_bad_card : bool = randf() < bad_card_chance
 	
 	if generate_bad_card:
@@ -107,9 +107,9 @@ func assign_tooltip(upgrade_type) -> String:
 		Upgrades.UpgradeType.CRAWLER:
 			return "Crawler LVL" + str(Upgrades.crawler_upgrade[2]+1) + "\n+ " + str(Upgrades.crawler_upgrade[0]) + " HP" + "\n+ " + str(Upgrades.crawler_upgrade[1]) + " ATK"
 		Upgrades.UpgradeType.UNDEAD_ARCHER:
-			return "Undead Archer LVL" + str(Upgrades.undead_archer_upgrade[2]+1) + str(Upgrades.undead_archer_upgrade[0]) + " HP" + "\n+ " + str(Upgrades.undead_archer_upgrade[1]) + " ATK"
+			return "Undead Archer LVL" + str(Upgrades.undead_archer_upgrade[2]+1) + "\n+ " + str(Upgrades.undead_archer_upgrade[0]) + " HP" + "\n+ " + str(Upgrades.undead_archer_upgrade[1]) + " ATK"
 		Upgrades.UpgradeType.EXPLODER:
-			return "Exploder LVL" + str(Upgrades.exploder_upgrade[2]+1) + str(Upgrades.exploder_upgrade[0]) + " HP" + "\n+ " + str(Upgrades.exploder_upgrade[1]) + " ATK"
+			return "Exploder LVL" + str(Upgrades.exploder_upgrade[2]+1) + "\n+ " + str(Upgrades.exploder_upgrade[0]) + " HP" + "\n+ " + str(Upgrades.exploder_upgrade[1]) + " ATK"
 		Upgrades.UpgradeType.VAMPIRE_KNIGHT:
-			return "Vampire LVL" + str(Upgrades.vampire_knight_upgrade[2]+1) + str(Upgrades.vampire_knight_upgrade[0]) + " HP" + "\n+ " + str(Upgrades.vampire_knight_upgrade[1]) + " ATK"
+			return "Vampire LVL" + str(Upgrades.vampire_knight_upgrade[2]+1) + "\n+ " + str(Upgrades.vampire_knight_upgrade[0]) + " HP" + "\n+ " + str(Upgrades.vampire_knight_upgrade[1]) + " ATK"
 	return "Error"

@@ -12,7 +12,7 @@ enum UpgradeType {
 	VAMPIRE_KNIGHT
 }
 
-var machine_upgrades : float = 50
+var machine_upgrades : float = 75
 
 # Monster Upgrades
 # Each upgrade should be applied from here at spawn time to the friednlies

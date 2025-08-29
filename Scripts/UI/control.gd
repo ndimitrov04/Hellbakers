@@ -21,6 +21,8 @@ extends Control
 @onready var error = $Error
 @onready var error_timer = $Error/Timer
 
+@onready var speak = $OvenPanel/Speak
+
 ## Clickable area in which monsters will be able to be spawned
 ## on click if a card has been previously selected.
 @onready var arena_area = $ArenaArea 

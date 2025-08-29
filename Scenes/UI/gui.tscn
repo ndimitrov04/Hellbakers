@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://by4t0dl6gt321"]
+[gd_scene load_steps=59 format=3 uid="uid://by4t0dl6gt321"]
 
 [ext_resource type="Script" path="res://Scripts/UI/control.gd" id="1_8irx8"]
 [ext_resource type="Theme" uid="uid://bgtrc35poin82" path="res://Themes/base_theme.tres" id="1_sr5ax"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d4b0hw4u6tjat" path="res://Images/Sprites/SlotMachine/pull.png" id="4_nc3y5"]
 [ext_resource type="Texture2D" uid="uid://lmc4fe4x1gv4" path="res://Images/Sprites/death.png" id="5_8hnna"]
 [ext_resource type="Texture2D" uid="uid://bln1lmqsq8j5p" path="res://Images/Sprites/Zombie/card.png" id="8_wn4u3"]
+[ext_resource type="Texture2D" uid="uid://dvubpwr20agfp" path="res://Images/Sprites/ovenlord.png" id="9_xhbvr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_an1gu"]
 atlas = ExtResource("3_df5jn")
@@ -418,7 +419,7 @@ offset_bottom = 120.0
 mouse_default_cursor_shape = 2
 
 [node name="SoulDough" type="AnimatedSprite2D" parent="Control/SlotMachine"]
-position = Vector2(48, 140)
+position = Vector2(48, 124)
 sprite_frames = SubResource("SpriteFrames_on5ei")
 autoplay = "default"
 frame_progress = 0.0328492
@@ -438,6 +439,7 @@ theme = ExtResource("1_sr5ax")
 theme_override_font_sizes/font_size = 16
 text = "Soul Dough: 600"
 horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Hand" type="Panel" parent="Control"]
 layout_mode = 1
@@ -557,11 +559,49 @@ theme_override_constants/outline_size = 5
 wait_time = 3.0
 one_shot = true
 
+[node name="OvenPanel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.719
+anchor_top = 0.822
+anchor_right = 0.719
+anchor_bottom = 0.822
+offset_left = -0.320068
+offset_top = 0.159973
+offset_right = 343.68
+offset_bottom = 120.16
+
+[node name="Ovenlord" type="Sprite2D" parent="Control/OvenPanel"]
+position = Vector2(296, 40)
+scale = Vector2(2, 2)
+texture = ExtResource("9_xhbvr")
+
+[node name="Speak" type="Label" parent="Control/OvenPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.023
+anchor_top = 0.071
+anchor_right = 0.023
+anchor_bottom = 0.071
+offset_left = 0.0879993
+offset_top = 0.0479999
+offset_right = 232.088
+offset_bottom = 96.048
+theme_override_font_sizes/font_size = 16
+text = "Well well well, what do we have here, a brand new cook! Burn all of the challenges which I've lovingly baked for you and you might get to live at the end of this."
+autowrap_mode = 3
+
 [node name="Overlay" type="ColorRect" parent="."]
+visible = false
 offset_right = 1280.0
 offset_bottom = 720.0
 theme = ExtResource("1_sr5ax")
 color = Color(0, 0, 0, 0.605)
+
+[node name="Ovenlord" type="Sprite2D" parent="Overlay"]
+position = Vector2(848, 80)
+scale = Vector2(2, 2)
+texture = ExtResource("9_xhbvr")
 
 [node name="BeginCombat" type="Button" parent="Overlay"]
 modulate = Color(2, 2, 2, 1)
@@ -735,35 +775,27 @@ text = "Arena ----->"
 autowrap_mode = 3
 
 [node name="Play" type="Button" parent="Overlay"]
+z_index = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.456
 anchor_top = 0.189
 anchor_right = 0.456
 anchor_bottom = 0.189
-offset_left = 0.319946
-offset_top = -0.0800018
-offset_right = 248.32
-offset_bottom = 39.92
+offset_left = 64.32
+offset_top = 7.92
+offset_right = 312.32
+offset_bottom = 47.92
 theme = ExtResource("1_sr5ax")
 theme_override_font_sizes/font_size = 16
 text = "Got it, let me fight already!"
 
 [node name="spchbl" type="Label" parent="Overlay"]
 layout_mode = 0
-offset_left = 512.0
-offset_top = 72.0
-offset_right = 784.0
-offset_bottom = 121.0
-text = "SPEECH BUBBLE HERE
-funny line here"
-autowrap_mode = 1
-
-[node name="ovplc" type="Label" parent="Overlay"]
-layout_mode = 0
-offset_left = 776.0
-offset_top = 24.0
-offset_right = 928.0
-offset_bottom = 128.0
-text = "OVENLORD PICTURE HERE OVENLORD PICTURE "
-autowrap_mode = 1
+offset_left = 528.0
+offset_top = 48.0
+offset_right = 800.0
+offset_bottom = 123.0
+text = "Welcome to my kitchen!
+I am the Ovenlord, and these are the rules:"
+autowrap_mode = 3
