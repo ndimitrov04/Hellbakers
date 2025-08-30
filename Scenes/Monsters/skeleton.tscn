@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://dvy0gyxb8llg6"]
+[gd_scene load_steps=71 format=3 uid="uid://dvy0gyxb8llg6"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/skeleton.gd" id="1_nba18"]
 [ext_resource type="PackedScene" uid="uid://c8b13p68c0gsa" path="res://Scenes/UI/Misc/health_bar.tscn" id="2_5g0yg"]
@@ -7,6 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://o2nnk07ro2pm" path="res://Scenes/Behaviours/pathfinding.tscn" id="5_gbunu"]
 [ext_resource type="Texture2D" uid="uid://bdeudig0vw6yv" path="res://Images/Sprites/Skeleton/idle.png" id="5_rodyw"]
 [ext_resource type="Texture2D" uid="uid://bwn5el5h7caww" path="res://Images/Sprites/Skeleton/walk.png" id="6_mrwdk"]
+[ext_resource type="PackedScene" uid="uid://d4beufnp1yoy6" path="res://Scenes/Behaviours/sfx.tscn" id="7_lwsrq"]
+[ext_resource type="AudioStream" uid="uid://dk5jf621ffft" path="res://Audio/SFX/Skeleton/hb_skeleton - Walk #1.wav" id="8_otrx1"]
+[ext_resource type="AudioStream" uid="uid://b7syh850i4gkp" path="res://Audio/SFX/Skeleton/hb_skeleton - Walk #2.wav" id="9_hfubx"]
+[ext_resource type="AudioStream" uid="uid://ct2swskqdt3qp" path="res://Audio/SFX/Skeleton/hb_skeleton - Attack #1.wav" id="10_mvx2y"]
+[ext_resource type="AudioStream" uid="uid://brp0kr1uv262s" path="res://Audio/SFX/Skeleton/hb_skeleton - Attack #2.wav" id="11_tt4ss"]
+[ext_resource type="AudioStream" uid="uid://d2cb47o76vua5" path="res://Audio/SFX/Skeleton/hb_skeleton - Death #1.wav" id="12_nkbg6"]
+[ext_resource type="AudioStream" uid="uid://yd7186tsfkst" path="res://Audio/SFX/Skeleton/hb_skeleton - Death #2.wav" id="13_adp60"]
+[ext_resource type="AudioStream" uid="uid://bvmalbia5jp7b" path="res://Audio/SFX/Skeleton/hb_skeleton - Spawn #2.wav" id="14_qbt8f"]
+[ext_resource type="AudioStream" uid="uid://blp67idydagrs" path="res://Audio/SFX/Skeleton/hb_skeleton - Spawn.wav" id="15_8e8a1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yvj2b"]
 atlas = ExtResource("3_ivhvb")
@@ -554,7 +563,11 @@ position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_65pjr")
 debug_color = Color(0, 0.843137, 0.980392, 0.25098)
 
-[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+[node name="SFX" parent="." instance=ExtResource("7_lwsrq")]
+walk_array = Array[AudioStreamWAV]([ExtResource("8_otrx1"), ExtResource("9_hfubx")])
+attack_array = Array[AudioStreamWAV]([ExtResource("10_mvx2y"), ExtResource("11_tt4ss")])
+death_array = Array[AudioStreamWAV]([ExtResource("12_nkbg6"), ExtResource("13_adp60")])
+spawn_array = Array[AudioStreamWAV]([ExtResource("14_qbt8f"), ExtResource("15_8e8a1")])
 
 [node name="Hurtbox" type="Area2D" parent="."]
 position = Vector2(0, 8)

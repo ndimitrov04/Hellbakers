@@ -474,6 +474,8 @@ type = 1
 
 [node name="UndeadArcher" parent="." instance=ExtResource("5_si2f0")]
 position = Vector2(112, 336)
+type = 1
 
 [node name="UndeadArcher2" parent="." instance=ExtResource("5_si2f0")]
 position = Vector2(824, 336)
+type = 1

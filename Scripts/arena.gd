@@ -4,6 +4,8 @@ extends Node2D
 @onready var mouse_stop = $"../GUI/Control/MouseStop"
 @onready var animation_player = $"../Overlay/AnimationPlayer"
 
+const difficulty_subtractor : int = 50
+
 ## Areas (Array : Vector2) occupied by monsters
 var occupied_areas = []
 
@@ -18,9 +20,14 @@ func _ready():
 	# Update which arena scene the control.arena refers to
 	control.arena = self
 	get_parent().arena = self
+	# Play strategy track
+	Music.stream = Music.STRATEGY_THEME
+	Music.play()
 	# Give soul dough "buy in" for stage to player
 	await get_tree().create_timer(0.2).timeout
 	control.add_soul_dough(get_meta("soul_dough"))
+	# Soul dough subtraction from base game
+	control.remove_soul_dough(difficulty_subtractor)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

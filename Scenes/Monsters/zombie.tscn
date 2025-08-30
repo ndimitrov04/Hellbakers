@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://d0x48qhwf0c4k"]
+[gd_scene load_steps=71 format=3 uid="uid://d0x48qhwf0c4k"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/zombie.gd" id="1_2e7eb"]
 [ext_resource type="Texture2D" uid="uid://dsvoiu6wp60nf" path="res://Images/Sprites/Zombie/attack.png" id="2_mlqrj"]
@@ -7,6 +7,15 @@
 [ext_resource type="Texture2D" uid="uid://lmc4fe4x1gv4" path="res://Images/Sprites/death.png" id="3_an47i"]
 [ext_resource type="PackedScene" uid="uid://dl8tfarbkanla" path="res://Scenes/Behaviours/simple_movement.tscn" id="4_2rk35"]
 [ext_resource type="Texture2D" uid="uid://cne4sfueh2ygl" path="res://Images/Sprites/Zombie/idle.png" id="4_uxypv"]
+[ext_resource type="PackedScene" uid="uid://d4beufnp1yoy6" path="res://Scenes/Behaviours/sfx.tscn" id="7_wri8t"]
+[ext_resource type="AudioStream" uid="uid://bi55ugbdbaqj0" path="res://Audio/SFX/Zombie/hb_zombie - Attack #1.wav" id="8_sifaj"]
+[ext_resource type="AudioStream" uid="uid://c3ogdsa2wwu6k" path="res://Audio/SFX/Zombie/hb_zombie - Attack #2.wav" id="9_dv8bd"]
+[ext_resource type="AudioStream" uid="uid://chlysoqt4m30q" path="res://Audio/SFX/Zombie/hb_zombie - Attack #3.wav" id="10_g42os"]
+[ext_resource type="AudioStream" uid="uid://pwk8kp14omly" path="res://Audio/SFX/Zombie/hb_zombie - Death #1.wav" id="11_5vnv6"]
+[ext_resource type="AudioStream" uid="uid://d0sp6313sptbx" path="res://Audio/SFX/Zombie/hb_zombie - Death #2.wav" id="12_kd8co"]
+[ext_resource type="AudioStream" uid="uid://cxhx4mttgpm2g" path="res://Audio/SFX/Zombie/hb_zombie - Spawn #2.wav" id="13_j50fd"]
+[ext_resource type="AudioStream" uid="uid://b1a3fobvfpab4" path="res://Audio/SFX/Zombie/hb_zombie - Spawn #3.wav" id="14_ylh0h"]
+[ext_resource type="AudioStream" uid="uid://c4fgaa00x6yj3" path="res://Audio/SFX/Zombie/hb_zombie - Spawn.wav" id="15_ttjpv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qm41o"]
 atlas = ExtResource("2_mlqrj")
@@ -554,7 +563,10 @@ position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_65pjr")
 debug_color = Color(0, 0.843137, 0.980392, 0.25098)
 
-[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+[node name="SFX" parent="." instance=ExtResource("7_wri8t")]
+attack_array = Array[AudioStreamWAV]([ExtResource("8_sifaj"), ExtResource("9_dv8bd"), ExtResource("10_g42os")])
+death_array = Array[AudioStreamWAV]([ExtResource("11_5vnv6"), ExtResource("12_kd8co")])
+spawn_array = Array[AudioStreamWAV]([ExtResource("13_j50fd"), ExtResource("14_ylh0h"), ExtResource("15_ttjpv")])
 
 [node name="Hurtbox" type="Area2D" parent="."]
 position = Vector2(0, 8)

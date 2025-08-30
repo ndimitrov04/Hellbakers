@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d2cb47o76vua5"
+path="res://.godot/imported/hb_skeleton - Death #1.wav-3a228022f800d2605c6fe6b63c52db05.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/Skeleton/hb_skeleton - Death #1.wav"
+dest_files=["res://.godot/imported/hb_skeleton - Death #1.wav-3a228022f800d2605c6fe6b63c52db05.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

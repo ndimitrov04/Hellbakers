@@ -33,7 +33,7 @@ func _ready():
 		[preload("res://Scenes/Monsters/goblin.tscn"), preload("res://Images/Sprites/Goblin/card.png"), false, Upgrades.UpgradeType.GOBLIN],
 		[preload("res://Scenes/Monsters/vampire.tscn"), preload("res://Images/Sprites/Vampire/card.png"), false, Upgrades.UpgradeType.VAMPIRE],
 		[preload("res://Scenes/Monsters/undead_archer.tscn"), preload("res://Images/Sprites/UndeadArcher/card.png"), false, Upgrades.UpgradeType.UNDEAD_ARCHER],
-		[preload("res://Scenes/Monsters/exploder.tscn"), placeholder_texture, false, Upgrades.UpgradeType.EXPLODER],
+		[preload("res://Scenes/Monsters/exploder.tscn"), preload("res://Images/Sprites/Exploder/card.png"), false, Upgrades.UpgradeType.EXPLODER],
 		[preload("res://Scenes/Monsters/vampire_knight.tscn"), preload("res://Images/Sprites/VampireKnight/card.png"), false, Upgrades.UpgradeType.VAMPIRE_KNIGHT]
 	]
 
@@ -45,7 +45,7 @@ func _ready():
 		[preload("res://Scenes/Monsters/goblin.tscn"), preload("res://Images/Sprites/Goblin/card.png"), true, Upgrades.UpgradeType.GOBLIN],
 		[preload("res://Scenes/Monsters/vampire.tscn"), preload("res://Images/Sprites/Vampire/card.png"), true, Upgrades.UpgradeType.VAMPIRE],
 		[preload("res://Scenes/Monsters/undead_archer.tscn"), preload("res://Images/Sprites/UndeadArcher/card.png"), true, Upgrades.UpgradeType.UNDEAD_ARCHER],
-		[preload("res://Scenes/Monsters/exploder.tscn"), placeholder_texture, true, Upgrades.UpgradeType.EXPLODER],
+		[preload("res://Scenes/Monsters/exploder.tscn"), preload("res://Images/Sprites/Exploder/card.png"), true, Upgrades.UpgradeType.EXPLODER],
 		[preload("res://Scenes/Monsters/vampire_knight.tscn"), preload("res://Images/Sprites/VampireKnight/card.png"), true, Upgrades.UpgradeType.VAMPIRE_KNIGHT]
 	]
 
@@ -111,5 +111,5 @@ func assign_tooltip(upgrade_type) -> String:
 		Upgrades.UpgradeType.EXPLODER:
 			return "Exploder LVL" + str(Upgrades.exploder_upgrade[2]+1) + "\n+ " + str(Upgrades.exploder_upgrade[0]) + " HP" + "\n+ " + str(Upgrades.exploder_upgrade[1]) + " ATK"
 		Upgrades.UpgradeType.VAMPIRE_KNIGHT:
-			return "Vampire LVL" + str(Upgrades.vampire_knight_upgrade[2]+1) + "\n+ " + str(Upgrades.vampire_knight_upgrade[0]) + " HP" + "\n+ " + str(Upgrades.vampire_knight_upgrade[1]) + " ATK"
+			return "Vampire Knight LVL" + str(Upgrades.vampire_knight_upgrade[2]+1) + "\n+ " + str(Upgrades.vampire_knight_upgrade[0]) + " HP" + "\n+ " + str(Upgrades.vampire_knight_upgrade[1]) + " ATK"
 	return "Error"

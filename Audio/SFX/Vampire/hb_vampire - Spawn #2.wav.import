@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bbd445py78i13"
+path="res://.godot/imported/hb_vampire - Spawn #2.wav-6bf8305bd19a15ddaeb4cab60a7d3032.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/Vampire/hb_vampire - Spawn #2.wav"
+dest_files=["res://.godot/imported/hb_vampire - Spawn #2.wav-6bf8305bd19a15ddaeb4cab60a7d3032.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

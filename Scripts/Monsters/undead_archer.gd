@@ -72,8 +72,9 @@ func _physics_process(_delta):
 			elif type == Globals.ObjectType.ENEMY:
 				projectile_instance.type = Globals.ObjectType.ENEMY_PROJECTILE
 			projectile_instance.global_position = global_position
-			projectile_instance.shot_direction = projectile_instance.global_position.direction_to(current_target.global_position)
-			projectile_instance.look_at(current_target.global_position)
+			if current_target != null:
+				projectile_instance.shot_direction = projectile_instance.global_position.direction_to(current_target.global_position)
+				projectile_instance.look_at(current_target.global_position)
 			projectile_instance.damage = atk
 			projectile_instance.knockback = knockback
 			# Force next frame, otherwise if a frame lingers for 6-7 ticks,
@@ -86,6 +87,7 @@ func _physics_process(_delta):
 ## Take damage and apply knockback effect
 # Knockback is a positional vector which is added to the monster's current velocity
 func take_damage(damage_taken : int, knockback_taken : Vector2) -> void:
+	sfx.play_take_hit()
 	# Take damage
 	hp -= damage_taken
 	# Take knockback
@@ -100,6 +102,7 @@ func die() -> void:
 	var animation_name = sprite.animation
 	if animation_name.substr(0,3) != "die":
 		print(name + " has died!")
+		sfx.play_death()
 		match facing:
 			Direction.UP:
 				sprite.play("die_up")
@@ -150,6 +153,7 @@ func attack() -> void:
 	pathfinding.target_position = global_position
 	velocity = Vector2(0,0)
 	velocity = Vector2(0,0)
+	sfx.play_attack()
 	play_attack_animation()
 
 func get_closest_target(possible_targets : Array):

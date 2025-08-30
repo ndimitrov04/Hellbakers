@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://daxkckqhs3riv"]
+
+[ext_resource type="Script" path="res://Scripts/Globals/music.gd" id="1_umwa6"]
+[ext_resource type="AudioStream" uid="uid://bsc7s4hoi274o" path="res://Audio/SFX/UI/Click.wav" id="2_os04x"]
+
+[node name="Music" type="AudioStreamPlayer"]
+volume_db = -10.0
+script = ExtResource("1_umwa6")
+
+[node name="Mouse" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_os04x")
+volume_db = -4.0

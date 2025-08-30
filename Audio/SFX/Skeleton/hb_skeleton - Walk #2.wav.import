@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b7syh850i4gkp"
+path="res://.godot/imported/hb_skeleton - Walk #2.wav-c88daff33a469d2173b548c2c8cb7d5a.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/Skeleton/hb_skeleton - Walk #2.wav"
+dest_files=["res://.godot/imported/hb_skeleton - Walk #2.wav-c88daff33a469d2173b548c2c8cb7d5a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

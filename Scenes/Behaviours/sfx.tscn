@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4beufnp1yoy6"]
+
+[ext_resource type="Script" path="res://Scripts/Behaviours/sfx.gd" id="1_mqgu5"]
+
+[node name="SFX" type="Node2D"]
+script = ExtResource("1_mqgu5")
+
+[node name="Spawn" type="AudioStreamPlayer2D" parent="."]
+volume_db = 2.0
+bus = &"SFX"
+
+[node name="TakeHit" type="AudioStreamPlayer2D" parent="."]
+volume_db = 2.0
+bus = &"SFX"
+
+[node name="Walk" type="AudioStreamPlayer2D" parent="."]
+volume_db = -8.0
+bus = &"SFX"
+
+[node name="Attack" type="AudioStreamPlayer2D" parent="."]
+volume_db = 3.0
+bus = &"SFX"
+
+[node name="Die" type="AudioStreamPlayer2D" parent="."]
+volume_db = 4.0
+bus = &"SFX"

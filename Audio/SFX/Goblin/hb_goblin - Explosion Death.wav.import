@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d0ui8het6l2ib"
+path="res://.godot/imported/hb_goblin - Explosion Death.wav-039902fd67d8f766ba6ed5c12fc4996e.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/Goblin/hb_goblin - Explosion Death.wav"
+dest_files=["res://.godot/imported/hb_goblin - Explosion Death.wav-039902fd67d8f766ba6ed5c12fc4996e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://dpbusvgyvhrig"]
+[gd_scene load_steps=73 format=3 uid="uid://dpbusvgyvhrig"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/stone_golem.gd" id="1_o2a11"]
 [ext_resource type="PackedScene" uid="uid://c8b13p68c0gsa" path="res://Scenes/UI/Misc/health_bar.tscn" id="2_h53dl"]
@@ -7,6 +7,17 @@
 [ext_resource type="Texture2D" uid="uid://coenblgoqax0k" path="res://Images/Sprites/StoneGolem/idle.png" id="4_tr04x"]
 [ext_resource type="Texture2D" uid="uid://cskpuj4w743gp" path="res://Images/Sprites/StoneGolem/move.png" id="5_1es6d"]
 [ext_resource type="PackedScene" uid="uid://o2nnk07ro2pm" path="res://Scenes/Behaviours/pathfinding.tscn" id="5_mc3nu"]
+[ext_resource type="PackedScene" uid="uid://d4beufnp1yoy6" path="res://Scenes/Behaviours/sfx.tscn" id="7_xq4ck"]
+[ext_resource type="AudioStream" uid="uid://dh36npwon8xce" path="res://Audio/PlaceholderAudio/step.wav" id="8_de5uq"]
+[ext_resource type="AudioStream" uid="uid://iynll3fnksis" path="res://Audio/SFX/Golem/hb_golem - Walk #1.wav" id="9_qwq2w"]
+[ext_resource type="AudioStream" uid="uid://c77nn3chupo41" path="res://Audio/SFX/Golem/hb_golem - Walk #2.wav" id="10_qydoj"]
+[ext_resource type="AudioStream" uid="uid://byt2uwi38es4l" path="res://Audio/SFX/Golem/hb_golem - Walk #3.wav" id="11_4bqfb"]
+[ext_resource type="AudioStream" uid="uid://dr5p3yqj7q1hf" path="res://Audio/SFX/Golem/hb_golem - Attack #1.wav" id="12_0ca7c"]
+[ext_resource type="AudioStream" uid="uid://chrqmwmlaw8oh" path="res://Audio/SFX/Golem/hb_golem - Attack #2.wav" id="13_65fy7"]
+[ext_resource type="AudioStream" uid="uid://dqcudxciyfxph" path="res://Audio/SFX/Golem/hb_golem - Death #1.wav" id="14_ir7ww"]
+[ext_resource type="AudioStream" uid="uid://cktvevqrpihm8" path="res://Audio/SFX/Golem/hb_golem - Death #2.wav" id="15_51bis"]
+[ext_resource type="AudioStream" uid="uid://hjagf2nkr17j" path="res://Audio/SFX/Golem/hb_golem - Spawn #3.wav" id="16_orvh0"]
+[ext_resource type="AudioStream" uid="uid://d0r2ic78rtpok" path="res://Audio/SFX/Golem/hb_golem - Spawn.wav" id="17_bftxd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kwmi7"]
 atlas = ExtResource("2_yippn")
@@ -530,7 +541,6 @@ y_sort_enabled = true
 position = Vector2(0, -8)
 motion_mode = 1
 script = ExtResource("1_o2a11")
-type = null
 
 [node name="HealthBar" parent="." instance=ExtResource("2_h53dl")]
 
@@ -555,7 +565,11 @@ position = Vector2(2.5, 11)
 shape = SubResource("RectangleShape2D_65pjr")
 debug_color = Color(0, 0.843137, 0.980392, 0.25098)
 
-[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+[node name="SFX" parent="." instance=ExtResource("7_xq4ck")]
+walk_array = Array[AudioStreamWAV]([ExtResource("8_de5uq"), ExtResource("9_qwq2w"), ExtResource("10_qydoj"), ExtResource("11_4bqfb")])
+attack_array = Array[AudioStreamWAV]([ExtResource("12_0ca7c"), ExtResource("13_65fy7")])
+death_array = Array[AudioStreamWAV]([ExtResource("14_ir7ww"), ExtResource("15_51bis")])
+spawn_array = Array[AudioStreamWAV]([ExtResource("16_orvh0"), ExtResource("17_bftxd")])
 
 [node name="Hurtbox" type="Area2D" parent="."]
 position = Vector2(0, 8)
