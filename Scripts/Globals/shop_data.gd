@@ -8,7 +8,7 @@ extends Node
 # web storage on web? 
 
 # Keep track of biscuits globally
-var biscuits : int = 15 #15 for debug, start with in the real game 0
+var biscuits : int = 0
 
 # Keep track of upgrades
 

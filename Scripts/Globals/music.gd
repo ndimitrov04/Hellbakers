@@ -8,8 +8,8 @@ extends AudioStreamPlayer
 @onready var BATTLE_THEME_4 = preload("res://Audio/Music/Battle theme 4 (complete).wav")
 @onready var STRATEGY_THEME = preload("res://Audio/Music/Strategy theme (complete).wav")
 
-@onready var SHOP_THEME = preload("res://Audio/Music/Strategy theme (complete).wav")
-@onready var TITLE_THEME = preload("res://Audio/Music/Strategy theme (complete).wav")
+@onready var SHOP_THEME = preload("res://Audio/Music/shop.wav")
+@onready var TITLE_THEME = preload("res://Audio/Music/title.wav")
 
 @onready var battle_themes = []
 

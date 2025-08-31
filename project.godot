@@ -11,10 +11,12 @@ config_version=5
 [application]
 
 config/name="Hellbakers"
-config/version="0.96"
+config/version="1.0"
 run/main_scene="res://Scenes/UI/Main Menu/Main_Menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/image="res://thumbnail.png"
+boot_splash/use_filter=false
+config/icon="res://Images/Sprites/ovenlord.png"
 
 [autoload]
 

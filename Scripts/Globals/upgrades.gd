@@ -12,7 +12,7 @@ enum UpgradeType {
 	VAMPIRE_KNIGHT
 }
 
-var machine_upgrades : float = 75
+var machine_upgrades : float = 90
 
 # Monster Upgrades
 # Each upgrade should be applied from here at spawn time to the friednlies
@@ -22,11 +22,11 @@ var machine_upgrades : float = 75
 # to the friendly monsters on spawn.
 
 var zombie_upgrade = [0,0,0,2]
-var skeleton_upgrade = [0,0,0,3]
+var skeleton_upgrade = [0,0,0,2]
 var goblin_upgrade = [0,0,0,2]
-var vampire_upgrade = [0,0,0,5]
-var stone_golem_upgrade = [0,0,0,5]
+var vampire_upgrade = [0,0,0,3]
+var stone_golem_upgrade = [0,0,0,3]
 var crawler_upgrade = [0,0,0,3]
-var undead_archer_upgrade = [0,0,0,10]
+var undead_archer_upgrade = [0,0,0,5]
 var exploder_upgrade = [0,0,0,5]
-var vampire_knight_upgrade = [0,0,0,15]
+var vampire_knight_upgrade = [0,0,0,7]

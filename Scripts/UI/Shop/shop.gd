@@ -27,6 +27,7 @@ func _ready():
 	go_left.connect("pressed", _go_left_pressed)
 	go_right.connect("pressed", _go_right_pressed)
 	machine_upgrade.connect("pressed", _machine_upgrade_pressed)
+	await get_tree().create_timer(0.2).timeout
 	Music.stream = Music.SHOP_THEME
 	Music.play()
 
@@ -46,6 +47,9 @@ func _process(delta):
 func _exit_shop_pressed():
 	animation_player.play("FadeOut")
 	COOK.play()
+	# Play strategy track
+	Music.stream = Music.STRATEGY_THEME
+	Music.play()
 
 func _go_left_pressed():
 	if current_page == 0:

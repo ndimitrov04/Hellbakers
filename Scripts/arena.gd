@@ -4,13 +4,13 @@ extends Node2D
 @onready var mouse_stop = $"../GUI/Control/MouseStop"
 @onready var animation_player = $"../Overlay/AnimationPlayer"
 
-const difficulty_subtractor : int = 50
+const difficulty_subtractor : int = 35
 
 ## Areas (Array : Vector2) occupied by monsters
 var occupied_areas = []
 
 ## Areas (Array : Vector2) blocked by traps or impassable terrain
-# TBA - Implement this.
+# Deprecated
 var blocked_areas = []
 
 # Called when the node enters the scene tree for the first time.
@@ -94,7 +94,7 @@ func end_combat(result_victory : bool) -> void:
 		get_parent().load_next_arena()
 	else:
 		# Reward biscuits on death based on current arena
-		get_parent().reward_biscuits(get_parent().current_arena)
+		get_parent().reward_biscuits(get_parent().current_arena*2)
 		get_tree().reload_current_scene()
 
 func occupy_area(x : float, y : float) -> void:
