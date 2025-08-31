@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://4rkcwlmubbxi"]
+[gd_scene load_steps=65 format=3 uid="uid://4rkcwlmubbxi"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/crawler.gd" id="1_jx7qr"]
 [ext_resource type="PackedScene" uid="uid://c8b13p68c0gsa" path="res://Scenes/UI/Misc/health_bar.tscn" id="2_jsenn"]
@@ -7,6 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://lmc4fe4x1gv4" path="res://Images/Sprites/death.png" id="3_n5ft2"]
 [ext_resource type="PackedScene" uid="uid://dl8tfarbkanla" path="res://Scenes/Behaviours/simple_movement.tscn" id="3_xeoxw"]
 [ext_resource type="Texture2D" uid="uid://b5y28m5xluaeq" path="res://Images/Sprites/Crawler/idle.png" id="4_rbu1r"]
+[ext_resource type="PackedScene" uid="uid://d4beufnp1yoy6" path="res://Scenes/Behaviours/sfx.tscn" id="7_dppmc"]
+[ext_resource type="AudioStream" uid="uid://44quxrad1vio" path="res://Audio/SFX/Crawler/hb_crawler - Attack #1.wav" id="8_ct5e8"]
+[ext_resource type="AudioStream" uid="uid://bvlhwyq0k4el" path="res://Audio/SFX/Crawler/hb_crawler - Attack #2.wav" id="9_dkjr8"]
+[ext_resource type="AudioStream" uid="uid://1qln3333g5vu" path="res://Audio/SFX/Crawler/hb_crawler - Death #1.wav" id="10_gtf7s"]
+[ext_resource type="AudioStream" uid="uid://cc3iplq1l4deb" path="res://Audio/SFX/Crawler/hb_crawler - Death #2.wav" id="11_qoflq"]
+[ext_resource type="AudioStream" uid="uid://b4g5sekk62rxy" path="res://Audio/SFX/Crawler/hb_crawler - Spawn #2.wav" id="12_pnak3"]
+[ext_resource type="AudioStream" uid="uid://c6hmlcbrlnf14" path="res://Audio/SFX/Crawler/hb_crawler - Spawn.wav" id="13_xcsgw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5mlnr"]
 atlas = ExtResource("2_yb2nr")
@@ -531,7 +538,10 @@ position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_65pjr")
 debug_color = Color(0, 0.843137, 0.980392, 0.25098)
 
-[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+[node name="SFX" parent="." instance=ExtResource("7_dppmc")]
+attack_array = Array[AudioStreamWAV]([ExtResource("8_ct5e8"), ExtResource("9_dkjr8")])
+death_array = Array[AudioStreamWAV]([ExtResource("10_gtf7s"), ExtResource("11_qoflq")])
+spawn_array = Array[AudioStreamWAV]([ExtResource("12_pnak3"), ExtResource("13_xcsgw")])
 
 [node name="Hurtbox" type="Area2D" parent="."]
 position = Vector2(0, 8)

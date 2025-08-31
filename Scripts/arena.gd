@@ -4,11 +4,13 @@ extends Node2D
 @onready var mouse_stop = $"../GUI/Control/MouseStop"
 @onready var animation_player = $"../Overlay/AnimationPlayer"
 
+const difficulty_subtractor : int = 35
+
 ## Areas (Array : Vector2) occupied by monsters
 var occupied_areas = []
 
 ## Areas (Array : Vector2) blocked by traps or impassable terrain
-# TBA - Implement this.
+# Deprecated
 var blocked_areas = []
 
 # Called when the node enters the scene tree for the first time.
@@ -18,9 +20,14 @@ func _ready():
 	# Update which arena scene the control.arena refers to
 	control.arena = self
 	get_parent().arena = self
+	# Play strategy track
+	Music.stream = Music.STRATEGY_THEME
+	Music.play()
 	# Give soul dough "buy in" for stage to player
 	await get_tree().create_timer(0.2).timeout
 	control.add_soul_dough(get_meta("soul_dough"))
+	# Soul dough subtraction from base game
+	control.remove_soul_dough(difficulty_subtractor)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -87,7 +94,7 @@ func end_combat(result_victory : bool) -> void:
 		get_parent().load_next_arena()
 	else:
 		# Reward biscuits on death based on current arena
-		get_parent().reward_biscuits(get_parent().current_arena)
+		get_parent().reward_biscuits(get_parent().current_arena*2)
 		get_tree().reload_current_scene()
 
 func occupy_area(x : float, y : float) -> void:

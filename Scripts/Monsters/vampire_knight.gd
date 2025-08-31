@@ -70,6 +70,7 @@ func _physics_process(_delta):
 ## Take damage and apply knockback effect
 # Knockback is a positional vector which is added to the monster's current velocity
 func take_damage(damage_taken : int, knockback_taken : Vector2) -> void:
+	sfx.play_take_hit()
 	# Take damage
 	hp -= damage_taken
 	# Take knockback
@@ -84,6 +85,7 @@ func die() -> void:
 	var animation_name = sprite.animation
 	if animation_name.substr(0,3) != "die":
 		print(name + " has died!")
+		sfx.play_death()
 		match facing:
 			Direction.UP:
 				sprite.play("die_up")
@@ -134,6 +136,7 @@ func attack() -> void:
 	pathfinding.target_position = global_position
 	velocity = Vector2(0,0)
 	velocity = Vector2(0,0)
+	sfx.play_attack()
 	play_attack_animation()
 	
 ## Deal damage to enemy if hurtbox connects with a hitbox on a nearby enemy

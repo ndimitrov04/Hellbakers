@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://cw52o8sbt5w2b"]
+[gd_scene load_steps=71 format=3 uid="uid://cw52o8sbt5w2b"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/undead_archer.gd" id="1_kugid"]
 [ext_resource type="PackedScene" uid="uid://c8b13p68c0gsa" path="res://Scenes/UI/Misc/health_bar.tscn" id="2_32o55"]
@@ -7,6 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://kwr8aj3psxb0" path="res://Images/Sprites/UndeadArcher/idel.png" id="5_4adxa"]
 [ext_resource type="Texture2D" uid="uid://5xuulx6y7n6g" path="res://Images/Sprites/UndeadArcher/move.png" id="6_1can5"]
 [ext_resource type="PackedScene" uid="uid://o2nnk07ro2pm" path="res://Scenes/Behaviours/pathfinding.tscn" id="7_1ixp0"]
+[ext_resource type="PackedScene" uid="uid://d4beufnp1yoy6" path="res://Scenes/Behaviours/sfx.tscn" id="7_xgb1b"]
+[ext_resource type="AudioStream" uid="uid://dh36npwon8xce" path="res://Audio/PlaceholderAudio/step.wav" id="8_u348r"]
+[ext_resource type="AudioStream" uid="uid://dk5jf621ffft" path="res://Audio/SFX/Skeleton/hb_skeleton - Walk #1.wav" id="9_507eu"]
+[ext_resource type="AudioStream" uid="uid://b7syh850i4gkp" path="res://Audio/SFX/Skeleton/hb_skeleton - Walk #2.wav" id="10_kbley"]
+[ext_resource type="AudioStream" uid="uid://ct2swskqdt3qp" path="res://Audio/SFX/Skeleton/hb_skeleton - Attack #1.wav" id="11_k86xp"]
+[ext_resource type="AudioStream" uid="uid://brp0kr1uv262s" path="res://Audio/SFX/Skeleton/hb_skeleton - Attack #2.wav" id="12_vloqn"]
+[ext_resource type="AudioStream" uid="uid://d2cb47o76vua5" path="res://Audio/SFX/Skeleton/hb_skeleton - Death #1.wav" id="13_ak480"]
+[ext_resource type="AudioStream" uid="uid://yd7186tsfkst" path="res://Audio/SFX/Skeleton/hb_skeleton - Death #2.wav" id="14_squ7t"]
+[ext_resource type="AudioStream" uid="uid://bvmalbia5jp7b" path="res://Audio/SFX/Skeleton/hb_skeleton - Spawn #2.wav" id="15_o8ubq"]
+[ext_resource type="AudioStream" uid="uid://blp67idydagrs" path="res://Audio/SFX/Skeleton/hb_skeleton - Spawn.wav" id="16_51ywc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ol51d"]
 atlas = ExtResource("3_rg5fc")
@@ -551,7 +561,11 @@ position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_65pjr")
 debug_color = Color(0, 0.843137, 0.980392, 0.25098)
 
-[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+[node name="SFX" parent="." instance=ExtResource("7_xgb1b")]
+walk_array = Array[AudioStreamWAV]([ExtResource("8_u348r"), ExtResource("9_507eu"), ExtResource("10_kbley")])
+attack_array = Array[AudioStreamWAV]([ExtResource("11_k86xp"), ExtResource("12_vloqn")])
+death_array = Array[AudioStreamWAV]([ExtResource("13_ak480"), ExtResource("14_squ7t")])
+spawn_array = Array[AudioStreamWAV]([ExtResource("15_o8ubq"), ExtResource("16_51ywc")])
 
 [node name="Pathfinding" parent="." instance=ExtResource("7_1ixp0")]
 target_desired_distance = 750.0

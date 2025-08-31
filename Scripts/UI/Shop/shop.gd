@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+@onready var COOK = $TextureRect/TextureRect/ExitButton/AudioStreamPlayer
+
 @onready var animation_player = $AnimationPlayer
 
 @onready var exit_button = $TextureRect/TextureRect/ExitButton
@@ -25,6 +27,9 @@ func _ready():
 	go_left.connect("pressed", _go_left_pressed)
 	go_right.connect("pressed", _go_right_pressed)
 	machine_upgrade.connect("pressed", _machine_upgrade_pressed)
+	await get_tree().create_timer(0.2).timeout
+	Music.stream = Music.SHOP_THEME
+	Music.play()
 
 
 # This implementation of manual movement of the shop and
@@ -41,6 +46,10 @@ func _process(delta):
 
 func _exit_shop_pressed():
 	animation_player.play("FadeOut")
+	COOK.play()
+	# Play strategy track
+	Music.stream = Music.STRATEGY_THEME
+	Music.play()
 
 func _go_left_pressed():
 	if current_page == 0:

@@ -42,4 +42,5 @@ func _spawn_monster():
 		var monster_x = randf_range(top_left_2.global_position.x, bottom_right_2.global_position.x)
 		var monster_y = randf_range(top_left_2.global_position.y, bottom_right_2.global_position.y)
 		monster.global_position = Vector2(monster_x, monster_y)
+	monster.sfx.sounds_on = false
 	monster.combat_started = true

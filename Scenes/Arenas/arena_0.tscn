@@ -474,7 +474,3 @@ type = 1
 [node name="Zombie2" parent="." instance=ExtResource("4_e6tnq")]
 position = Vector2(752, 400)
 type = 1
-
-[node name="Zombie3" parent="." instance=ExtResource("4_e6tnq")]
-position = Vector2(656, 328)
-type = 1

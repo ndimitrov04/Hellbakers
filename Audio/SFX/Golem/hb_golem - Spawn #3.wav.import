@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://hjagf2nkr17j"
+path="res://.godot/imported/hb_golem - Spawn #3.wav-ba95c3a6cb91107f6f5c987e0aa33406.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/Golem/hb_golem - Spawn #3.wav"
+dest_files=["res://.godot/imported/hb_golem - Spawn #3.wav-ba95c3a6cb91107f6f5c987e0aa33406.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

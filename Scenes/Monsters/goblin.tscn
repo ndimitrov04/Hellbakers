@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://b03uwfm8ji2tr"]
+[gd_scene load_steps=75 format=3 uid="uid://b03uwfm8ji2tr"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/goblin.gd" id="1_asch3"]
 [ext_resource type="PackedScene" uid="uid://c8b13p68c0gsa" path="res://Scenes/UI/Misc/health_bar.tscn" id="2_4p8rc"]
@@ -7,6 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://bahgdr1dv6p7u" path="res://Images/Sprites/Goblin/idle.png" id="5_57cu5"]
 [ext_resource type="Texture2D" uid="uid://lh08r3wl1kbe" path="res://Images/Sprites/Goblin/move.png" id="6_63j85"]
 [ext_resource type="PackedScene" uid="uid://o2nnk07ro2pm" path="res://Scenes/Behaviours/pathfinding.tscn" id="6_de51d"]
+[ext_resource type="PackedScene" uid="uid://d4beufnp1yoy6" path="res://Scenes/Behaviours/sfx.tscn" id="7_w1m8e"]
+[ext_resource type="AudioStream" uid="uid://dh36npwon8xce" path="res://Audio/PlaceholderAudio/step.wav" id="8_1b83i"]
+[ext_resource type="AudioStream" uid="uid://c26t1tdu03k46" path="res://Audio/SFX/Goblin/hb_goblin - Walk #1.wav" id="9_qsnju"]
+[ext_resource type="AudioStream" uid="uid://bkxy88kuw6xq8" path="res://Audio/SFX/Goblin/hb_goblin - Walk #2.wav" id="10_umjo4"]
+[ext_resource type="AudioStream" uid="uid://cfpyp5adk2r4o" path="res://Audio/SFX/Goblin/hb_goblin - Walk #3.wav" id="11_6qtjc"]
+[ext_resource type="AudioStream" uid="uid://cpq5jiaokjqoa" path="res://Audio/SFX/Goblin/hb_goblin - Attack #1.wav" id="12_u1c1e"]
+[ext_resource type="AudioStream" uid="uid://dcosiblifotc3" path="res://Audio/SFX/Goblin/hb_goblin - Attack #2.wav" id="13_p0ap2"]
+[ext_resource type="AudioStream" uid="uid://dmwg31af5at4p" path="res://Audio/SFX/Goblin/hb_goblin - Death #1.wav" id="14_njt7h"]
+[ext_resource type="AudioStream" uid="uid://b8qvxtt7illlm" path="res://Audio/SFX/Goblin/hb_goblin - Spawn #2.wav" id="15_yfj0g"]
+[ext_resource type="AudioStream" uid="uid://cws5lseggh6k4" path="res://Audio/SFX/Goblin/hb_goblin - Spawn.wav" id="16_856jc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iyk6w"]
 atlas = ExtResource("3_3smwy")
@@ -579,7 +589,11 @@ position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_65pjr")
 debug_color = Color(0, 0.843137, 0.980392, 0.25098)
 
-[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+[node name="SFX" parent="." instance=ExtResource("7_w1m8e")]
+walk_array = Array[AudioStreamWAV]([ExtResource("8_1b83i"), ExtResource("9_qsnju"), ExtResource("10_umjo4"), ExtResource("11_6qtjc")])
+attack_array = Array[AudioStreamWAV]([ExtResource("12_u1c1e"), ExtResource("13_p0ap2")])
+death_array = Array[AudioStreamWAV]([ExtResource("14_njt7h")])
+spawn_array = Array[AudioStreamWAV]([ExtResource("15_yfj0g"), ExtResource("16_856jc")])
 
 [node name="Pathfinding" parent="." instance=ExtResource("6_de51d")]
 target_desired_distance = 350.0

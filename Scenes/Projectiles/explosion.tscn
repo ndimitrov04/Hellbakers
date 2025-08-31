@@ -1,6 +1,65 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckx0hu22fmqym"]
+[gd_scene load_steps=13 format=3 uid="uid://ckx0hu22fmqym"]
 
 [ext_resource type="Script" path="res://Scripts/Projectiles/explosion.gd" id="1_2qbit"]
+[ext_resource type="Texture2D" uid="uid://bl2omlierxqhe" path="res://Images/Sprites/Exploder/explosion.png" id="2_1c1n6"]
+[ext_resource type="AudioStream" uid="uid://d0ui8het6l2ib" path="res://Audio/SFX/Goblin/hb_goblin - Explosion Death.wav" id="2_8vn2a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gu3n8"]
+atlas = ExtResource("2_1c1n6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_113xh"]
+atlas = ExtResource("2_1c1n6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrb5x"]
+atlas = ExtResource("2_1c1n6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axda0"]
+atlas = ExtResource("2_1c1n6")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4b17u"]
+atlas = ExtResource("2_1c1n6")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hg8j"]
+atlas = ExtResource("2_1c1n6")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5vwy"]
+atlas = ExtResource("2_1c1n6")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cr8kv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gu3n8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_113xh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrb5x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axda0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4b17u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hg8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5vwy")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fdf5q"]
 radius = 100.0
@@ -9,6 +68,12 @@ radius = 100.0
 collision_layer = 7
 collision_mask = 7
 script = ExtResource("1_2qbit")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cr8kv")
+autoplay = "default"
+frame = 6
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_fdf5q")
@@ -33,3 +98,9 @@ color = Color(0.993721, 0.451658, 1.92523e-07, 1)
 wait_time = 0.5
 one_shot = true
 autostart = true
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_8vn2a")
+volume_db = 3.0
+autoplay = true
+bus = &"SFX"

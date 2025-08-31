@@ -88,6 +88,9 @@ func _on_begin_combat_pressed() -> void:
 	disable_all_controls()
 	# Enable monster AI
 	arena.start_combat()
+	# Play music
+	Music.stream = Music.battle_themes.pick_random()
+	Music.play()
 
 ## Disable all child control nodes by intercepting mouse
 ## events via control in "mouse stop" mode.
