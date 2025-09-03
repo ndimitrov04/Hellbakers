@@ -437,7 +437,7 @@ size = Vector2(28, 448)
 [node name="Arena" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_cpshg")
-metadata/soul_dough = 240
+metadata/soul_dough = 300
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_loj0m")
